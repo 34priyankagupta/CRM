@@ -1,0 +1,17 @@
+1. first create git account that you can login
+
+2. now create ssh key:
+	1. ssh-keygen -t rsa -b 4096 -C "34priyankagupta@gmail.com"      (it will ask a name for ssh file: i gave id_alltimegitkey)
+	2. eval $(ssh-agent -s)   (make sure ssh-agent is running in background)
+	3. add it in setting of github :
+		1. clip < ~/.ssh/id_alltimegitkey.pub
+	4. check ssh connection with github :
+		1. ssh -T git@github.com   (if you have multiple host and keys, specify it in config file which will be present in .ssh folder)
+		
+		in config: 
+		
+		Host github.com
+		HostName github.com
+		IdentityFile /c/Users/priyanka_gupta45/.ssh/id_alltimegitkey
+		IdentitiesOnly yes
+	
