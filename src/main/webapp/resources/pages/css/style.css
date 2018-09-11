@@ -1,0 +1,328 @@
+* {
+    font-size: 15px;
+    line-height: 150%;
+    box-sizing: border-box;
+    font-family: ubuntu;
+    color: rgb(92, 91, 91);
+    transition: all 0.3s;
+}
+
+.stillFetching{
+    font: 140%;
+}
+
+/*----------------GENERAL BACKGROUND  -----------------------*/
+.all-background {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.945), #636161cc), url('img/nature.jpg');
+    background-size: cover;
+    height: 100vh;
+    margin: -10px;
+    overflow: auto;
+}
+
+.all-background-list {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.897), #636161cc), url('img/nature.jpg');
+    background-size: cover;
+    margin: -10px;
+    overflow: auto;
+}
+
+.flex-box {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+}
+
+.flex-box-item {
+    text-transform: uppercase;
+    color: rgb(209, 209, 241);
+    word-spacing: 10px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+/*-----------------COVER PAGE-----------------*/
+.customer-main {
+    background-image: linear-gradient(#faf6f688, #000000), url('img/nature.jpg');
+    height: 90vh;
+    background-size: cover;
+    margin: -10px;
+    overflow: hidden;
+}
+
+/*--------------NAVIGATION-----------------------*/
+.nav-container-box {
+    background-color: rgba(9, 1, 44, 0.548);
+    overflow: hidden;
+}
+
+.flex-container-box {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flex-container-box li {
+    flex: 0 0 200px;
+    padding: 10px;
+}
+
+.flex-container-box a {
+    font-size: 100%;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.flex-container-box a:active,
+.flex-container-box a:link {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+}
+
+.flex-container-box a:hover,
+.flex-container-box a:visited {
+    background-color: rgba(255, 255, 255, 0.212);
+    color: white;
+}
+
+.active {
+    background-color: rgba(255, 255, 255, 0.212);
+    color: white;
+}
+
+/*-------------DROP-DOWN-----------*/
+.absoluted {
+    position: absolute;
+}
+
+.float-right {
+    text-align: right;
+}
+
+.flex-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dropdown-container-box {
+    position: absolute;
+    justify-content: flex-end;
+    background-color: rgba(9, 1, 44, 0.295);
+    width: 100px;
+    left: 85%;
+    margin: -10px 0;
+    border: -1px solid rgba(255, 255, 255, 0.445);
+    border-radius: 2px;
+}
+
+.dropdown-flex-box {
+    display: none;
+    position: relative;
+}
+
+.dropdown-flex-box li {
+    list-style: none;
+    width: 70px;
+    padding: 10px 0;
+    text-align: right;
+    border-bottom: 1px solid rgb(8, 11, 177);
+    display: block;
+}
+
+.dropdown-flex-box a {
+    text-transform: uppercase;
+    font-size: 80%;
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-flex-box a:hover {
+    color: white;
+    font-size: 84%;
+    display: block;
+    /* background-color: rgba(253, 253, 255, 0.267); */
+    text-decoration: none;
+}
+
+.flex-dropdown-head.nowShowDropdown .dropdown-flex-box {
+    display: block;
+}
+
+/* .flex-dropdown-head:hover .dropdown-flex-box{
+    display: inline-block;
+} */
+/*-------------PAGE HEADING----------------*/
+.smallLine h2 {
+    text-transform: uppercase;
+    text-align: center;
+    margin: 50px 0 0 0;
+}
+
+.smallLine:after {
+    display: block;
+    height: 1px;
+    width: 100px;
+    position: relative;
+    content: " ";
+    background-color: #333333;
+    margin: 30px auto;
+}
+
+/* -------------ADD Customer-------------------- */
+.flex-container {
+    display: flex;
+    height: 600;
+    justify-content: center;
+    background-color: rgb(250, 250, 250);
+    padding: 30px;
+}
+
+.flex-item-box {
+    flex: 0 0 700px;
+    border: 1px solid rgb(236, 180, 180);
+    margin: 30px;
+    padding: 30px;
+}
+
+.flex-item {
+    padding: 20px;
+    text-align: center;
+}
+
+.flex-item input,
+.flex-item .box select,
+.flex-item .box label{
+    border-radius: 2px;
+    border: 1px solid rgb(206, 203, 203);
+    padding: 5px;
+    width: 200px;
+    float: right;
+}
+
+.flex-item .box label{
+    overflow: hidden;
+    height: 33px;
+}
+
+.flex-item:nth-child(4) .box,
+.flex-item:nth-child(5) .box{
+    
+    margin-left: -50px;
+}
+
+.flex-item:nth-child(4) .box input,
+.flex-item:nth-child(5) .box input,
+.flex-item .box label {
+    width: 150px;   
+}
+
+.flex-item:nth-child(4) .box button,
+.flex-item:nth-child(5) .box button {
+    float: right;
+    width: 50px;
+    height: 34px;
+    background-color: rgb(230, 230, 230);
+    border: 1px solid rgb(197, 197, 197);
+}
+
+.flex-item:nth-child(4) .box button:disabled,
+.flex-item:nth-child(5) .box button:disabled {
+    cursor: no-drop;
+    background-color: rgb(197, 197, 197);
+    color: rgb(247, 243, 243);
+}
+
+.flex-item:nth-child(4) .box button:hover,
+.flex-item:nth-child(5) .box button:hover {
+    background-color: rgb(197, 197, 197);
+    color: rgb(247, 243, 243);
+}
+
+.selectClass{
+    width: 200px;
+    margin: 7px 0;
+    height: 30px;
+}
+
+.selectClass option{
+    width: 200px;
+}
+
+.flex-item .customizedLabel {
+    text-transform: uppercase;
+}
+
+.flex-item span{
+    color: red;
+    border: 1px solid gray;
+    width: 200;
+    height: 5px;
+    font: 70%;
+}
+
+.customizedLabel:after {
+    content: " ";
+    background-color: rgb(241, 201, 201);
+    height: 1px;
+    width: 80px;
+    display: block;
+    position: relative;
+}
+
+.buttonBox{
+    left: 35%;
+}
+
+.personalisedBtn {
+    color: white;
+    width: 100px;
+    height: 40px;
+    margin: 7px;
+    padding: 4px;
+    background-color: rgba(12, 1, 59, 0.521);
+    text-transform: uppercase;
+    border: 1px solid rgba(12, 1, 59, 0);
+    border-radius: 2px;
+}
+
+.personalisedBtn{
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.personalisedBtn:hover,
+.personalisedBtn:disabled  {
+    text-decoration: none;
+    display: block;
+    color: rgb(119, 119, 119);
+    background-color: rgba(12, 1, 59, 0.322);
+}
+
+.personalisedBtn:disabled {
+    cursor: no-drop;
+}
+
+.about {
+    height: 300px;
+    text-align: justify;
+    background-color: rgb(250, 250, 250);
+    margin: 20px;
+    padding: 80px;
+}
+
+.about strong {
+    color: gray;
+    text-align: justify;
+    line-height: 170%;
+    font-weight: 100;
+    word-spacing: 5px;
+}
+
+.table-background {
+    background-color: rgb(250, 250, 250);
+}

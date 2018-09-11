@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Customers</title>
+    <link rel="stylesheet" href="resources/pages/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body ng-app="app">
+
+    <nav class="nav-container-box">
+
+        <ul class="flex-container-box container absoluted">
+            <li>
+                <a ui-sref="root" class="nav-button">Home</a>
+            </li>
+            <li>
+                <a ui-sref="customerList" class="navButton">Customers</a>
+            </li>
+            <li>
+                <a ui-sref="addCustomer" class="navButton">Add Customers</a>
+            </li>
+            <li>
+                <a ui-sref="about" class="navButton">About</a>
+            </li>
+        </ul>
+
+
+        <div class="flex-dropdown-head">
+            <ul class="flex-container-box flex-header container">
+                <li class="float-right">
+                    <a href="">User</a>
+                </li>
+            </ul>
+            <div class="dropdown-container-box">
+                <ul class="dropdown-flex-box container">
+                    <li>
+                        <a ui-sref="root">Account</a>
+                    </li>
+                    <li>
+                        <a ui-sref="customerList">Profile</a>
+                    </li>
+                    <li>
+                        <a ui-sref="addCustomer">Setting</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <div ui-view></div>
+    <div ui-view="mainCover"></div>
+
+
+
+
+
+
+    <!-------------------------------- S C R I P T S -------------------------------------->
+    <link rel="stylesheet" href="resources/pages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/pages/css/ubuntu.css">
+    <script src="resources/pages/js/jquery.min.js"></script>
+    <script src="resources/pages/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="resources/pages/js/angular.js"></script>
+    <script type="text/javascript" src="resources/pages/js/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="resources/pages/js/module.js"></script>
+    <script type="text/javascript" src="resources/pages/js/controllers.js"></script>
+    <script type="text/javascript" src="resources/pages/js/states.js"></script>
+    <script type="text/javascript" src="resources/pages/js/factory.js"></script>
+    <script type="text/javascript" src="resources/pages/js/directives.js"></script>
+</body>
+
+</html>
