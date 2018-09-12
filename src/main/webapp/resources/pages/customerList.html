@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="oEmp in result.data">
+                <tr ng-repeat="oEmp in result.data | startFrom:(currentPage-1)*pageSize | limitTo: pageSize">
                     <td>
                         <a href="#">{{oEmp.id}}</a>
                     </td>
@@ -34,8 +34,14 @@
                     </td>
                 </tr>
             </tbody>
+
         </table>
-        <label ng-show="allCustList" class="stillFetching" style="color: rgba(255, 255, 255, 0.781)"> Please wait while Customer list is
+        <!-- PAGINATION -->
+        <div uib-pagination total-items="result.data.length" ng-hide="allCustList" ng-model="currentPage" items-per-page="pageSize"></div>
+
+
+        <label ng-show="allCustList" class="stillFetching" style="color: rgba(255, 255, 255, 0.781)"> Please wait while
+            Customer list is
             fetched!!!!!!</label>
     </div>
 </div>

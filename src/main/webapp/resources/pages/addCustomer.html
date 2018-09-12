@@ -92,14 +92,17 @@
                 </div>
                 <div class="flex-item">
                     <div class="col-md-12 buttonBox">
-                        <button class="personalisedBtn" ng-click="saveNewCustomer()" ng-disabled="disableAddCustomer">
+                        <button class="personalisedBtn" ng-hide="disableAddCustomer" ng-click="saveNewCustomer()">
                             Add
+                        </button>
+                        <button class="personalisedBtn" ng-show="disableAddCustomer" ng-disabled="disableAddCustomer">
+                            Adding...
                         </button>
                     </div>
                 </div>
-                <div>
+                <!-- <div>
                     <label ng-show="disableAddCustomer" class="stillFetching"> Please wait while we add....</label>
-                </div>
+                </div> -->
             </div>
         </form>
     </div>

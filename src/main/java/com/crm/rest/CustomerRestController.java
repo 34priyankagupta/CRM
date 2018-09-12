@@ -24,39 +24,44 @@ public class CustomerRestController {
 	private CustomerService customerService;
 
 	@GetMapping("/customers")
-	public List<Customer> getCustomers() {
+	public List<Customer> getCustomers() throws InterruptedException {
+		Thread.sleep(2000);
 		return customerService.getCustometers();
 	}
 
 	@GetMapping("/customers/{id}")
-	public Customer getCustomer(@PathVariable int id) {
+	public Customer getCustomer(@PathVariable int id) throws InterruptedException {
 		Customer customer = customerService.getCustomer(id);
 		if(customer==null) {
 			throw new CustomerNotFoundException("Customer not found: "+id);
 		}
+		Thread.sleep(2000);
 		return customerService.getCustomer(id);
 	}
 
 	@DeleteMapping("/customers/{id}")
-	public Customer deleteCustomer(@PathVariable int id) {
+	public Customer deleteCustomer(@PathVariable int id) throws InterruptedException {
 		Customer customer = customerService.getCustomer(id);
 		if (customer == null) {
 			throw new CustomerNotFoundException("Customer not found: "+id);
 		}
 		customerService.deleteCustomer(id);
+		Thread.sleep(2000);
 		return customer;
 	}
 
 	@PostMapping("/customers")
-	public Customer addCustomer(@RequestBody Customer theCustomer) {
+	public Customer addCustomer(@RequestBody Customer theCustomer) throws InterruptedException {
 		theCustomer.setId(0);
 		customerService.saveCustomer(theCustomer);
+		Thread.sleep(2000);
 		return theCustomer;
 	}
 
 	@PutMapping("/customers")
-	public Customer updatingCustomer(@RequestBody Customer theCustomer) {
+	public Customer updatingCustomer(@RequestBody Customer theCustomer) throws InterruptedException {
 		customerService.saveCustomer(theCustomer);
+		Thread.sleep(2000);
 		return theCustomer;
 	}
 }
