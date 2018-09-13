@@ -188,19 +188,6 @@
 			} else {
 				$state.go("customerList");
 			}
-			// $scope.deleteCust = function(id){
-			// var a = confirm("Are you sure that you want to delete this customer permanently?");
-			// if (a) {
-			// 	customerFactory.deleteCustomer(id).then((function (r) {
-			// 		Notification.success({message: 'Customer deleted', delay: 1000});
-			// 		console.log("deleting customer ", r);
-			// 		$state.go("customerList");
-			// 	})).catch(function (e) {
-			// 		console.log(e);
-			// 	})
-			// } else {
-			// 	$state.go("customerList");
-			// }
 		}
 	]);
 
