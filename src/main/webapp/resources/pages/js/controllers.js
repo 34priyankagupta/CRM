@@ -1,17 +1,18 @@
 (function () {
 	var app = angular.module("app");
 
-	app.controller("customerListController", ["$scope", "customerFactory","Notification", function ($scope, customerFactory, Notification) {
+	app.controller("customerListController", ["$scope", "customerFactory", "Notification", function ($scope, customerFactory, Notification) {
 		$scope.pageSize = 6;
 		$scope.currentPage = 1;
 		$scope.allCustList = true;
 		customerFactory.getCustomers().then(function (r) {
 			$scope.allCustList = false;
-			Notification.success({message: 'Customers listed', delay: 1000});
-			console.log("dhjhd", $scope.allCustList);
 			$scope.result = r;
 		}).catch(function (e) {
-			Notification.error({message: e.data.message, delay: 1000});
+			Notification.error({
+				message: e.data.message,
+				delay: 1000
+			});
 			$scope.result = e;
 		})
 	}]);
@@ -23,8 +24,15 @@
 
 
 
-	app.controller("addCustomerController", ["$scope", "$state", "customerFactory","Notification",
+	app.controller("addCustomerController", ["$scope", "$state", "customerFactory", "Notification",
 		function ($scope, $state, customerFactory, Notification) {
+			console.log("hdhd",$scope.firstName);
+			if(($scope.firstName)) {
+				console.log("required first name");
+				$scope.disableAddCustomer = true;
+			}else{
+				$scope.disableAddCustomer = false;
+			}
 
 			$scope.saveNewCustomer = function () {
 				$scope.disableAddCustomer = true;
@@ -34,11 +42,16 @@
 					email: $scope.email
 				};
 				customerFactory.saveCustomer(data).then(function (r) {
-					Notification.success({message: 'Customer added', delay: 1000});
+					Notification.success({
+						message: 'Customer added'
+					});
 					$state.go("customerList");
 				}).catch((function (e) {
 					console.log(e);
-					Notification.error({message: e.data.message, delay: 1000});
+					Notification.error({
+						message: e.data.message,
+						delay: 1000
+					});
 				}))
 
 			};
@@ -149,6 +162,7 @@
 						$scope.error = true;
 					}
 				}).catch((e) => {
+					$scope.zip = null;
 					$scope.allZip[0].Name = e.data.Message;
 					$scope.error = true;
 				})
@@ -160,27 +174,37 @@
 
 	])
 
-	app.controller("deleteCustomerController", ["customerFactory", "$stateParams", "$scope", "$state","Notification",
-		function (customerFactory, $stateParams, $scope, $state, Notification) {
+	app.controller("deleteCustomerController", ["customerFactory", "$stateParams", "$scope",
+		"$state", "Notification", "deleteCustomerResolver",
+		function (customerFactory, $stateParams, $scope, $state, Notification, deleteCustomerResolver) {
 			var id = $stateParams.id;
-			console.log("id found", id);
-			// $scope.deleteCust = function(id){
-			var a = confirm("Are you sure that you want to delete this customer permanently?");
-			if (a) {
-				customerFactory.deleteCustomer(id).then((function (r) {
-					Notification.success({message: 'Customer deleted', delay: 1000});
-					console.log("deleting customer ", r);
-					$state.go("customerList");
-				})).catch(function (e) {
-					console.log(e);
-				})
+			$scope.deleting = true;
+			console.log("deleteCustomerResolver", deleteCustomerResolver);
+			if (deleteCustomerResolver) {
+				Notification.success({
+					message: 'Customer deleted'
+				});
+				$state.go("customerList");
 			} else {
 				$state.go("customerList");
 			}
+			// $scope.deleteCust = function(id){
+			// var a = confirm("Are you sure that you want to delete this customer permanently?");
+			// if (a) {
+			// 	customerFactory.deleteCustomer(id).then((function (r) {
+			// 		Notification.success({message: 'Customer deleted', delay: 1000});
+			// 		console.log("deleting customer ", r);
+			// 		$state.go("customerList");
+			// 	})).catch(function (e) {
+			// 		console.log(e);
+			// 	})
+			// } else {
+			// 	$state.go("customerList");
+			// }
 		}
 	]);
 
-	app.controller("updateCustomerController", ["$state", "customerFactory", "$scope", "detailCustomerResolver","Notification",
+	app.controller("updateCustomerController", ["$state", "customerFactory", "$scope", "detailCustomerResolver", "Notification",
 		function ($state, customerFactory, $scope, detailCustomerResolver, Notification) {
 			$scope.cust = detailCustomerResolver.data;
 			$scope.updateThisCustomer = function () {
@@ -192,11 +216,17 @@
 					email: $scope.cust.email
 				};
 				customerFactory.updateCustomer(data).then((function (r) {
-					Notification.success({message: 'Customer updated', delay: 1000});
+					Notification.success({
+						message: 'Customer updated',
+						delay: 1000
+					});
 					$state.go("customerList");
 				})).catch(function (e) {
 					console.log("error came up");
-					Notification.error({message: e.data.message, delay: 1000});
+					Notification.error({
+						message: e.data.message,
+						delay: 1000
+					});
 				});
 
 			}

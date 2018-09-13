@@ -26,22 +26,29 @@
                     <td>
                         <!-- <a ui-sref="deleteCustomer({id:oEmp.id})"> -->
                         <a href="#!/deleteCustomer/{{oEmp.id}}">
-                            <button class="btn btn-default">Delete</button>
+                            <button ng-hide="deleting" class="btn btn-default">Delete</button>
+                        </a>
+                        <a>
+                            <button ng-show="deleting" ng-disabled="deleting" class="btn btn-default">Deleting...</button>
                         </a>
                         <a href="#!/updateCustomer/{{oEmp.id}}">
-                            <button class="btn btn-default">Update</button>
+                            <button class="btn btn-default" title="Update Customer">Update</button>
                         </a>
+
                     </td>
                 </tr>
             </tbody>
 
         </table>
         <!-- PAGINATION -->
-        <div uib-pagination total-items="result.data.length" ng-hide="allCustList" ng-model="currentPage" items-per-page="pageSize"></div>
+        <div uib-pagination total-items="result.data.length" ng-hide="allCustList" ng-model="currentPage"
+            items-per-page="pageSize"></div>
 
 
         <label ng-show="allCustList" class="stillFetching" style="color: rgba(255, 255, 255, 0.781)"> Please wait while
             Customer list is
             fetched!!!!!!</label>
+
+        <main-spinner ng-show="allCustList"></main-spinner>
     </div>
 </div>

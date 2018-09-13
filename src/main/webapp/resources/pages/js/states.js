@@ -43,28 +43,6 @@
                         }
                     }
                 })
-                .state("deleteCustomer", {
-                    // parent: 'customerLayout',
-                    url: "/deleteCustomer/:id",
-                    controller: "deleteCustomerController"
-                })
-                .state("updateCustomer", {
-                    parent: 'customerLayout',
-                    url: "/updateCustomer/:id",
-                    views: {
-                        'updateCustomer': {
-                            controller: "updateCustomerController",
-                            templateUrl: 'resources/pages/updateCustomer.html'
-                        }
-                    },
-                    resolve: {
-                        detailCustomerResolver: function($stateParams,customerFactory){
-                            const id = $stateParams.id;
-                            console.log("in resolver",customerFactory.getCustomer(id));
-                            return customerFactory.getCustomer(id);                            
-                        }
-                    }
-                })
                 .state("about", {
                     parent: "customerLayout",
                     url: '/about',

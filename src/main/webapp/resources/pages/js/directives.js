@@ -33,6 +33,17 @@
         };
     }]);
 
+    app.directive("mainSpinner", function(){
+        return{
+            restrict: "AE",
+            templateUrl: 'resources/pages/spinner.html'
+        }
+    })
+
+    app.directive("file", function(){
+        
+    })
+
     // app.directive("foundError", function(){
     //     return {
     //         restrict: "A",

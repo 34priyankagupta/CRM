@@ -20,12 +20,12 @@
     overflow: auto;
 }
 
-.all-background-list {
+/* .all-background-list {
     background-image: linear-gradient(rgba(255, 255, 255, 0.897), #636161cc), url('img/nature.jpg');
     background-size: cover;
     margin: -10px;
     overflow: auto;
-}
+} */
 
 .flex-box {
     display: flex;

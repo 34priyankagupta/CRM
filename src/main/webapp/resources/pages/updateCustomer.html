@@ -1,68 +1,67 @@
-<div class="all-background">
-    <div class="container">
-        <div class="smallLine">
-            <h2>Update Customers</h2>
-        </div>
+<div class="container">
+    <div class="smallLine">
+        <h2>Update Customers</h2>
+    </div>
 
-        <div class="flex-container">
+    <div class="flex-container">
 
-            <div class="flex-item-box">
-                <div class="flex-item">
-                    <div class="col-md-6">
-                        <label>
-                            <strong class="customizedLabel">Customer Id</strong>
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" placeholder="Id" name="id" ng-model="cust.id" ng-value="cust.id" disabled>
-                    </div>
+        <div class="flex-item-box">
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">Customer Id</strong>
+                    </label>
                 </div>
-                <div class="flex-item">
-                    <div class="col-md-6">
-                        <label>
-                            <strong class="customizedLabel">First Name</strong>
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" placeholder="First Name" name="firstName" ng-model="cust.firstName" ng-value="cust.firstName">
-                    </div>
+                <div class="col-md-6">
+                    <input type="text" placeholder="Id" name="id" ng-model="cust.id" ng-value="cust.id" disabled>
                 </div>
-                <div class="flex-item">
-                    <div class="col-md-6">
-                        <label>
-                            <strong class="customizedLabel">Last Name</strong>
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" placeholder="Last Name" name="lastName" ng-model="cust.lastName" ng-value="cust.lastName">
-                    </div>
+            </div>
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">First Name</strong>
+                    </label>
                 </div>
-                <div class="flex-item">
-                    <div class="col-md-6">
-                        <label>
-                            <strong class="customizedLabel">Email</strong>
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" placeholder="Email" name="email" ng-model="cust.email" ng-value="cust.email">
-                    </div>
+                <div class="col-md-6">
+                    <input type="text" placeholder="First Name" name="firstName" ng-model="cust.firstName" ng-value="cust.firstName">
                 </div>
-                <div class="flex-item">
-                    <div class="col-md-12 buttonBox">
-                        <button class="personalisedBtn" ng-hide="disableAddCustomer" ng-click="updateThisCustomer()">
-                            Update
-                        </button>
-                        <button class="personalisedBtn" ng-show="disableAddCustomer" ng-disabled="disableAddCustomer">
-                            Updating...
-                        </button>
-                    </div>
+            </div>
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">Last Name</strong>
+                    </label>
                 </div>
-                <!-- <div>
+                <div class="col-md-6">
+                    <input type="text" placeholder="Last Name" name="lastName" ng-model="cust.lastName" ng-value="cust.lastName">
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">Email</strong>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" placeholder="Email" name="email" ng-model="cust.email" ng-value="cust.email">
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="col-md-12 buttonBox">
+                    <button class="personalisedBtn" ng-hide="disableAddCustomer" ng-click="updateThisCustomer()">
+                        Update
+                    </button>
+                    <button class="personalisedBtn" ng-show="disableAddCustomer" title="Updating the customer"
+                        ng-disabled="disableAddCustomer">
+                        Updating...
+                    </button>
+                </div>
+            </div>
+            <!-- <div>
                     <label ng-show="disableAddCustomer"class="stillFetching"> Please wait while we update.... </label>
                 </div> -->
 
-            </div>
-
         </div>
+
     </div>
 </div>

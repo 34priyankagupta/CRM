@@ -1,109 +1,108 @@
-<div class="all-background">
-    <div class="container">
-        <div class="smallLine">
-            <h2>Add Customers</h2>
-        </div>
+<div class="container">
+    <div class="smallLine">
+        <h2>Add Customers</h2>
+    </div>
 
-        <form name="addForm" class="flex-container">
+    <form name="addForm" class="flex-container">
 
-            <div class="flex-item-box">
-                <div class="flex-item">
-                    <div class="col-md-6">
-                        <label>
-                            <strong class="customizedLabel">First Name</strong>
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" placeholder="First Name" name="firstName" ng-model="firstName">
-                    </div>
+        <div class="flex-item-box">
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">First Name</strong>
+                    </label>
                 </div>
-                <div class="flex-item">
-                    <div class="col-md-6">
-                        <label>
-                            <strong class="customizedLabel">Last Name</strong>
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" placeholder="Last Name" name="lastName" ng-model="lastName">
-                    </div>
+                <div class="col-md-6">
+                    <input type="text" placeholder="First Name" name="firstName" ng-model="firstName">
+                    
                 </div>
-                <div class="flex-item">
-                    <div class="col-md-6">
-                        <label>
-                            <strong class="customizedLabel">Email</strong>
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" placeholder="Email" name="email" ng-model="email">
-                    </div>
+                <!-- <span ng-hide="addForm.firstName.$error.required">Please enter name!</span> -->
+            </div>
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">Last Name</strong>
+                    </label>
                 </div>
-                <div class="flex-item">
-                    <div class="col-md-6">
-                        <label>
-                            <strong class="customizedLabel">Country</strong>
-                        </label>
+                <div class="col-md-6">
+                    <input type="text" placeholder="Last Name" name="lastName" ng-model="lastName" required>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">Email</strong>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" placeholder="Email" name="email" ng-model="email" required>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">Country</strong>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <div class="box">
+
+                        <div ng-show="placePart">
+                            <button ng-click="allPlaces()" class="" ng-disabled="disableIfPlace">Find</button>
+                            <input type="text" placeholder="Place" ng-model="place" ng-change="ifSomePlace()">
+                        </div>
+
+                        <select ng-show="showCountries" class="selectClass" ng-model="selectedPlace" ng-change="showLabelHidePlacePart()">
+                            <option ng-repeat="p in all" name="place" value="{{p.name}}" ng-disabled="errorPlace">{{p.name}}</option>
+                        </select>
+
+                        <div ng-show="placeLabel">
+                            <button ng-click="resetPlace()">&times;</button>
+                            <label for="place" title="{{selectedPlace}}">{{selectedPlace}}</label>
+                        </div>
+
                     </div>
-                    <div class="col-md-6">
-                        <div class="box">
 
-                            <div ng-show="placePart">
-                                <button ng-click="allPlaces()" class="" ng-disabled="disableIfPlace">Find</button>
-                                <input type="text" placeholder="Place" ng-model="place" ng-change="ifSomePlace()">
-                            </div>
+                </div>
+            </div>
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">Please provide a proper zipcode</strong>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <div class="box">
+                        <div ng-show="zipPart">
+                            <button ng-click="allZipCode()" class="" ng-disabled="disableIfZip">Zip</button>
+                            <input type="text" placeholder="Zip Code" ng-model="zip" ng-change="ifSomeZip()" maxlength="6">
+                        </div>
 
-                            <select ng-show="showCountries" class="selectClass" ng-model="selectedPlace" ng-change="showLabelHidePlacePart()">
-                                <option ng-repeat="p in all" name="place" value="{{p.name}}" ng-disabled="errorPlace">{{p.name}}</option>
-                            </select>
+                        <select ng-show="showZipPostals" class="selectClass" ng-model="selectedZip" ng-change="showLabelHideZipPart()">
+                            <option ng-repeat="p in allZip" name="zip" value="{{p.Name}}" ng-disabled="error">{{p.Name}}</option>
+                        </select>
 
-                            <div ng-show="placeLabel">
-                                <button ng-click="resetPlace()">&times;</button>
-                                <label for="place">{{selectedPlace}}</label>
-                            </div>
-
+                        <div ng-show="zipLabel">
+                            <button ng-click="resetZip()">&times;</button>
+                            <label for="zip" title="{{selectedZip}}">{{selectedZip}}</label>
                         </div>
 
                     </div>
                 </div>
-                <div class="flex-item">
-                    <div class="col-md-6">
-                        <label>
-                            <strong class="customizedLabel">Please provide a proper zipcode</strong>
-                        </label>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box">
-                            <div ng-show="zipPart">
-                                <button ng-click="allZipCode()" class="" ng-disabled="disableIfZip">Zip</button>
-                                <input type="text" placeholder="Zip Code" ng-model="zip" ng-change="ifSomeZip()"
-                                    maxlength="6">
-                            </div>
-
-                            <select ng-show="showZipPostals" class="selectClass" ng-model="selectedZip" ng-change="showLabelHideZipPart()">
-                                <option ng-repeat="p in allZip" name="zip" value="{{p.Name}}" ng-disabled="error">{{p.Name}}</option>
-                            </select>
-
-                            <div ng-show="zipLabel">
-                                <button ng-click="resetZip()">&times;</button>
-                                <label for="zip">{{selectedZip}}</label>
-                            </div>
-
-                        </div>
-                    </div>
+            </div>
+            <div class="flex-item">
+                <div class="col-md-12 buttonBox">
+                    <button class="personalisedBtn" ng-hide="disableAddCustomer" ng-click="saveNewCustomer()">
+                        Add
+                    </button>
+                    <button class="personalisedBtn" ng-show="disableAddCustomer" title="Adding customer" ng-disabled="disableAddCustomer">
+                        Adding...
+                    </button>
                 </div>
-                <div class="flex-item">
-                    <div class="col-md-12 buttonBox">
-                        <button class="personalisedBtn" ng-hide="disableAddCustomer" ng-click="saveNewCustomer()">
-                            Add
-                        </button>
-                        <button class="personalisedBtn" ng-show="disableAddCustomer" ng-disabled="disableAddCustomer">
-                            Adding...
-                        </button>
-                    </div>
-                </div>
-                <!-- <div>
+            </div>
+            <!-- <div>
                     <label ng-show="disableAddCustomer" class="stillFetching"> Please wait while we add....</label>
                 </div> -->
-            </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
