@@ -13,8 +13,7 @@
                             var a = confirm("Are you sure that you want to delete this customer permanently?");
                             if (a)
                                 return customerFactory.deleteCustomer(id);
-                            else{
-                                
+                            else{                                
                                 $state.go("customerList");
                             }
                         }

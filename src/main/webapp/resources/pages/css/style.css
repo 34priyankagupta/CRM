@@ -6,10 +6,20 @@
     color: rgb(92, 91, 91);
     transition: all 0.3s;
 }
-
-.stillFetching{
-    font: 140%;
+.progressfile:link,
+.progressfile:hover,
+.progressfile:visited,
+.progressfile:active{
+    text-decoration: none;
+    color: rgb(92, 91, 91);
+    display: inline;
 }
+
+.progress,
+div + .progress{
+    cursor: no-drop;
+}
+
 
 /*----------------GENERAL BACKGROUND  -----------------------*/
 .all-background {
@@ -299,7 +309,7 @@
 .personalisedBtn:disabled  {
     text-decoration: none;
     display: block;
-    color: rgb(119, 119, 119);
+    color: rgb(245, 245, 245);
     background-color: rgba(12, 1, 59, 0.322);
 }
 

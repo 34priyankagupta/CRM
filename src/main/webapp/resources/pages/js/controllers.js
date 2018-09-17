@@ -1,21 +1,23 @@
 (function () {
 	var app = angular.module("app");
 
-	app.controller("customerListController", ["$scope", "customerFactory", "Notification", function ($scope, customerFactory, Notification) {
-		$scope.pageSize = 6;
-		$scope.currentPage = 1;
-		$scope.allCustList = true;
-		customerFactory.getCustomers().then(function (r) {
-			$scope.allCustList = false;
-			$scope.result = r;
-		}).catch(function (e) {
-			Notification.error({
-				message: e.data.message,
-				delay: 1000
-			});
-			$scope.result = e;
-		})
-	}]);
+	app.controller("customerListController", ["$scope", "customerFactory", "Notification",
+		function ($scope, customerFactory, Notification) {
+			$scope.pageSize = 6;
+			$scope.currentPage = 1;
+			$scope.allCustList = true;
+			customerFactory.getCustomers().then(function (r) {
+				$scope.allCustList = false;
+				$scope.result = r;
+			}).catch(function (e) {
+				Notification.error({
+					message: e.data.message,
+					delay: 1000
+				});
+				$scope.result = e;
+			})
+		}
+	]);
 
 
 	app.controller("mainRootController", ["$state", function ($state) {
@@ -26,11 +28,22 @@
 
 	app.controller("addCustomerController", ["$scope", "$state", "customerFactory", "Notification",
 		function ($scope, $state, customerFactory, Notification) {
-			console.log("hdhd",$scope.firstName);
-			if(($scope.firstName)) {
+
+			var formdata = new FormData();
+			$scope.getTheFiles = function ($files) {
+				console.log($files);
+				angular.forEach($files, function (value, key) {
+					formdata.append(key, value);
+				});
+				console.log("Updatedformdata: ", formdata);
+			};
+
+			console.log("formdata: ", formdata);
+
+			if (($scope.firstName)) {
 				console.log("required first name");
 				$scope.disableAddCustomer = true;
-			}else{
+			} else {
 				$scope.disableAddCustomer = false;
 			}
 
@@ -42,6 +55,7 @@
 					email: $scope.email
 				};
 				customerFactory.saveCustomer(data).then(function (r) {
+					console.log("image:::", $scope.image);
 					Notification.success({
 						message: 'Customer added'
 					});
@@ -178,7 +192,6 @@
 		"$state", "Notification", "deleteCustomerResolver",
 		function (customerFactory, $stateParams, $scope, $state, Notification, deleteCustomerResolver) {
 			var id = $stateParams.id;
-			$scope.deleting = true;
 			console.log("deleteCustomerResolver", deleteCustomerResolver);
 			if (deleteCustomerResolver) {
 				Notification.success({

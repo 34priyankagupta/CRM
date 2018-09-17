@@ -1,54 +1,48 @@
 <div class="all-background-list">
-    <div class="container">
-        <div class="smallLine">
-            <h2>Customers</h2>
-        </div>
+	<div class="container">
+		<div class="smallLine">
+			<h2>Customers</h2>
+		</div>
+		<label ng-show="stateChangingStart">Your action is in progress......</label>
+		<table ng-hide="allCustList"
+			class="table table-bordered table-hover text-center  table-background">
 
-        <table ng-hide="allCustList" class="table table-bordered table-hover text-center  table-background">
+			<thead>
+				<tr>
+					<th class="text-center">ID</th>
+					<th class="text-center">FirstName</th>
+					<th class="text-center">LastName</th>
+					<th class="text-center">Email</th>
+					<th class="text-center">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="oEmp in result.data | startFrom:(currentPage-1)*pageSize | limitTo: pageSize">
+					<td><a href="#">{{oEmp.id}}</a></td>
+					<td>{{oEmp.firstName}}</td>
+					<td>{{oEmp.lastName}}</td>
+					<td>{{oEmp.email}}</td>
+					<td>
+						<!-- <a ui-sref="deleteCustomer({id:oEmp.id})"> --> <!-- <a href="#!/deleteCustomer/{{oEmp.id}}"> -->
+						<button class="btn btn-default"
+							title="Delete Customer permanently">
+							<a href="#!/deleteCustomer/{{oEmp.id}}" class="progressfile">Delete</a>
+						</button> <!-- </a> --> <!-- <a href="#!/updateCustomer/{{oEmp.id}}" class="progressfile"> -->
+						<button class="btn btn-default" title="Update Customer">
+							<a href="#!/updateCustomer/{{oEmp.id}}" class="progressfile">Update</a>
+						</button> <!-- </a> -->
 
-            <thead>
-                <tr>
-                    <th class="text-center">ID</th>
-                    <th class="text-center">FirstName</th>
-                    <th class="text-center">LastName</th>
-                    <th class="text-center">Email</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="oEmp in result.data | startFrom:(currentPage-1)*pageSize | limitTo: pageSize">
-                    <td>
-                        <a href="#">{{oEmp.id}}</a>
-                    </td>
-                    <td>{{oEmp.firstName}}</td>
-                    <td>{{oEmp.lastName}}</td>
-                    <td>{{oEmp.email}}</td>
-                    <td>
-                        <!-- <a ui-sref="deleteCustomer({id:oEmp.id})"> -->
-                        <a href="#!/deleteCustomer/{{oEmp.id}}">
-                            <button ng-hide="deleting" class="btn btn-default">Delete</button>
-                        </a>
-                        <a>
-                            <button ng-show="deleting" ng-disabled="deleting" class="btn btn-default">Deleting...</button>
-                        </a>
-                        <a href="#!/updateCustomer/{{oEmp.id}}">
-                            <button class="btn btn-default" title="Update Customer">Update</button>
-                        </a>
+					</td>
+				</tr>
+			</tbody>
 
-                    </td>
-                </tr>
-            </tbody>
+		</table>
+		<!-- PAGINATION -->
+		<div uib-pagination total-items="result.data.length"
+			ng-hide="allCustList" ng-model="currentPage"
+			items-per-page="pageSize"></div>
 
-        </table>
-        <!-- PAGINATION -->
-        <div uib-pagination total-items="result.data.length" ng-hide="allCustList" ng-model="currentPage"
-            items-per-page="pageSize"></div>
-
-
-        <label ng-show="allCustList" class="stillFetching" style="color: rgba(255, 255, 255, 0.781)"> Please wait while
-            Customer list is
-            fetched!!!!!!</label>
-
-        <main-spinner ng-show="allCustList"></main-spinner>
-    </div>
+		<div class="main-spinner" ng-show="allCustList"></div>
+	</div>
 </div>

@@ -6,6 +6,7 @@
     <form name="addForm" class="flex-container">
 
         <div class="flex-item-box">
+
             <div class="flex-item">
                 <div class="col-md-6">
                     <label>
@@ -14,7 +15,7 @@
                 </div>
                 <div class="col-md-6">
                     <input type="text" placeholder="First Name" name="firstName" ng-model="firstName">
-                    
+
                 </div>
                 <!-- <span ng-hide="addForm.firstName.$error.required">Please enter name!</span> -->
             </div>
@@ -90,12 +91,25 @@
                     </div>
                 </div>
             </div>
+
+            <div class="flex-item">
+                <div class="box">
+                    <div class="col-md-6">
+                        <img src="{{uploadme}}" width="100" height="50" alt="image"> {{image}}
+                    </div>
+                    <div class="col-md-6">
+                        <input type="file" ng-model="image" ng-files="getTheFiles($files)"/>
+                    </div>
+                </div>
+            </div>
+
             <div class="flex-item">
                 <div class="col-md-12 buttonBox">
-                    <button class="personalisedBtn" ng-hide="disableAddCustomer" ng-click="saveNewCustomer()">
+                    <button class="personalisedBtn" ng-hide="disableAddCustomer" ng-click="saveNewCustomer()"
+                        ng-disabled="!(firstName && lastName && email)">
                         Add
                     </button>
-                    <button class="personalisedBtn" ng-show="disableAddCustomer" title="Adding customer" ng-disabled="disableAddCustomer">
+                    <button class="personalisedBtn" ng-show="disableAddCustomer" title="Adding customer" disabled="disableAddCustomer">
                         Adding...
                     </button>
                 </div>

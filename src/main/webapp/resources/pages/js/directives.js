@@ -1,5 +1,28 @@
 (function () {
-    var app = angular.module('app');
+    const app = angular.module('app');
+
+    app.directive("mainSpinner", function () {
+        return {
+            restrict: "AEC",
+            templateUrl: 'resources/pages/spinner.html'
+        }
+    })
+
+    app.directive('ngFiles', ['$parse', function ($parse) {
+
+        function fn_link(scope, element, attrs) {
+            var onChange = $parse(attrs.ngFiles);
+            element.on('change', function (event) {
+                onChange(scope, {
+                    $files: event.target.files
+                });
+            });
+        };
+
+        return {
+            link: fn_link
+        }
+    }])
 
     app.directive("flexDropdownHead", ["$document", function ($document) {
         return {
@@ -14,7 +37,7 @@
 
     app.directive("navButton", ["$document", function ($document) {
         return {
-            restrict: "C",
+            restrict: 'C',
             link: function (scope, elem, attr) {
 
                 elem.bind("click", function () {
@@ -33,16 +56,33 @@
         };
     }]);
 
-    app.directive("mainSpinner", function(){
-        return{
-            restrict: "AE",
-            templateUrl: 'resources/pages/spinner.html'
-        }
-    })
 
-    app.directive("file", function(){
-        
-    })
+    app.directive('progressfile', ["$document", function ($document) {
+        console.log("enetered progress file");
+        console.log("document", $document);
+        return {
+            restrict: 'C',
+            link: function (scope, element, attr) {
+                console.log("element", element);
+                element.bind('click', function () {
+                    console.log("clicked element");
+                    if (!element.hasClass("progress")) {
+                        element.addClass("progress");
+                    }
+
+                //    $document.bind('click', function () {
+                //        if (element.hasClass("progress")) {
+                //            element.removeClass("progress");
+                //        }
+                //     })
+
+                    console.log("progress class added or removed as required!!");
+
+                })
+            }
+        };
+
+    }]);
 
     // app.directive("foundError", function(){
     //     return {
