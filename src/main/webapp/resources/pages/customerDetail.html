@@ -1,0 +1,37 @@
+<style>
+    .details{
+        border: 1px solid rgb(224, 224, 224);
+        margin-bottom: 15px;
+        padding: 2px;
+        height: 50px;
+        border-radius: 1px;
+    }
+    .details label,
+    .details div {
+        margin: 0;
+        font-size: 95%;
+    }
+</style>
+
+<div class="details">
+    <div class="col-md-6">
+        <div>
+            <i class="fas fa-user"></i>
+            <label>Id: </label>{{info.id}}
+        </div>
+        <div>
+            <i class="fas fa-user"></i>
+            <label>Name: </label> {{info.firstName}}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div>
+            <i class="fas fa-user"></i>
+            <label>LastName: </label> {{info.lastName}}
+        </div>
+        <div>
+            <i class="fas fa-user"></i>
+            <label>Email: </label> {{info.email}}
+        </div>
+    </div>
+</div>

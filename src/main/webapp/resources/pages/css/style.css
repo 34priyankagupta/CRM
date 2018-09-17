@@ -15,11 +15,13 @@
     display: inline;
 }
 
-.progress,
-div + .progress{
+.progress{
     cursor: no-drop;
 }
 
+.empId{
+    cursor: pointer;
+}
 
 /*----------------GENERAL BACKGROUND  -----------------------*/
 .all-background {

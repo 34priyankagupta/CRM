@@ -1,8 +1,8 @@
 (function () {
 	var app = angular.module("app");
 
-	app.controller("customerListController", ["$scope", "customerFactory", "Notification",
-		function ($scope, customerFactory, Notification) {
+	app.controller("customerListController", ["$scope", "customerFactory", "Notification", "$document",
+		function ($scope, customerFactory, Notification, $document) {
 			$scope.pageSize = 6;
 			$scope.currentPage = 1;
 			$scope.allCustList = true;
@@ -16,6 +16,40 @@
 				});
 				$scope.result = e;
 			})
+
+			$scope.showDetails = false;
+
+			$scope.showCustomerDetails = function (a) {
+				console.log("params", a);
+				$scope.stateChangingStart = true;
+				customerFactory.getCustomer(a).then((res) => {
+					$scope.stateChangingStart = false;
+					$scope.showDetails = true;
+					$scope.customerData = res.data;
+					$scope.pageSize = 4;
+					console.log("res.data", res.data);
+				}).catch((e) => {
+					$scope.stateChangingStart = false;
+					Notification.error({
+						message: e.data.message,
+						delay: 1000
+					});
+					console.log("error occurred", e);
+				})
+
+				$document.bind("click", function () {
+					console.log("clicking somewhere else");
+					$scope.$apply(function () {
+						$scope.pageSize = 6;
+						$scope.showDetails = false;
+					});
+					console.log("after digest");
+					console.log("$scope.pageSize ", $scope.pageSize);
+					console.log("$scope.showDetails ", $scope.showDetails);
+				})
+
+
+			}
 		}
 	]);
 

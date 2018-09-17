@@ -50,7 +50,7 @@
                             elem.removeClass('active');
                         }
                     })
-                    console.log("added");
+
                 })
             }
         };
@@ -58,31 +58,30 @@
 
 
     app.directive('progressfile', ["$document", function ($document) {
-        console.log("enetered progress file");
-        console.log("document", $document);
+
         return {
             restrict: 'C',
             link: function (scope, element, attr) {
-                console.log("element", element);
                 element.bind('click', function () {
-                    console.log("clicked element");
                     if (!element.hasClass("progress")) {
                         element.addClass("progress");
                     }
-
-                //    $document.bind('click', function () {
-                //        if (element.hasClass("progress")) {
-                //            element.removeClass("progress");
-                //        }
-                //     })
-
-                    console.log("progress class added or removed as required!!");
-
                 })
             }
         };
 
     }]);
+
+    app.directive('customerDetails', function(){
+        console.log("inside customer list");
+        return {
+            restrict: 'E',
+            scope: {
+                info: "=obj"
+            },
+            templateUrl: 'resources/pages/customerDetail.html'
+        }
+    })
 
     // app.directive("foundError", function(){
     //     return {
