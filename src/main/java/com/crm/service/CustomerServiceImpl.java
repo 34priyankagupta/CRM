@@ -39,6 +39,12 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDao.saveCustomer(theCustomer);
 		
 	}
+
+//	@Override
+//	public void saveImage(ImageKeeper theImageKeeper) {
+//		customerDao.saveImage(theImageKeeper);
+//		
+//	}
 	
 	
 

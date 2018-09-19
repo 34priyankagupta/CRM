@@ -64,15 +64,61 @@
 		function ($scope, $state, customerFactory, Notification) {
 
 			var formdata = new FormData();
-			$scope.getTheFiles = function ($files) {
-				console.log($files);
-				angular.forEach($files, function (value, key) {
-					formdata.append(key, value);
-				});
-				console.log("Updatedformdata: ", formdata);
+			$scope.getTheFiles = function (files) {
+				console.log("file added ", files);
+				// angular.forEach(files, function (value, key) {
+				// 	console.log("value found: " + value);
+				// 	console.log("key found: " + key);
+				// 	formdata.append(key, value);
+				// });
+				// console.log("Updatedformdata: ", formdata);
+
+				// console.log("trying some reader part");
+				// var testToBinary = window.btoa(files);
+				// console.log("binary file form: ", testToBinary);
+				// var reader = new FileReader();
+				// console.log("reader", reader);
+				// reader.onloadend = function () {
+				// 	console.log("reader.result", reader.result);
+				// }
+				// reader.readAsText(testToBinary);
+
+
+
+				var reader = new FileReader();
+				console.log("reader data: ", reader);
+
+				var blob = new Blob(files);
+				reader.readAsText(blob);
+				
+				reader.onload = function () {	
+					var res = reader.result;				
+					console.log("result found onload : ", res);
+				};
+
+				reader.onloadend = function () {
+					var res = reader.result;
+					console.log("result found onloadend : ", res);
+				}
+
+				reader.onloadstart = function () {
+					var res = reader.result;
+					console.log("result found onloadstart : ", res);
+				}
+
 			};
 
-			console.log("formdata: ", formdata);
+			// console.log("formdata: ", formdata);
+
+			// console.log("in add");
+
+			// fileChange = function(){
+			// 	console.log("file added: ", $scope.fileModel);
+			// 	console.log("event.target", event.target);
+			// }
+
+
+
 
 			if (($scope.firstName)) {
 				console.log("required first name");

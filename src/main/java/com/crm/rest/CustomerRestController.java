@@ -64,4 +64,10 @@ public class CustomerRestController {
 		Thread.sleep(2000);
 		return theCustomer;
 	}
+	
+//	@PostMapping("/customers/image")
+//	public ImageKeeper imageKeeper(@RequestBody ImageKeeper theImageKeeper) {
+//		customerService.saveImage(theImageKeeper);
+//		return theImageKeeper;
+//	}
 }

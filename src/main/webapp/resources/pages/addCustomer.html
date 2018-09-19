@@ -93,15 +93,20 @@
             </div>
 
             <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <button ng-click="showDocument()" title="Display document uploaded"><i class="fas fa-align-justify"></i></button>
+                        <strong class="customizedLabel">Add details</strong>
+                    </label>
+                </div>
                 <div class="box">
+
                     <div class="col-md-6">
-                        <img src="{{uploadme}}" width="100" height="50" alt="image"> {{image}}
-                    </div>
-                    <div class="col-md-6">
-                        <input type="file" ng-model="image" ng-files="getTheFiles($files)"/>
+                        <input type="file" ng-model="image" ng-files="getTheFiles(files)" />
                     </div>
                 </div>
             </div>
+
 
             <div class="flex-item">
                 <div class="col-md-12 buttonBox">
@@ -114,6 +119,8 @@
                     </button>
                 </div>
             </div>
+
+
             <!-- <div>
                     <label ng-show="disableAddCustomer" class="stillFetching"> Please wait while we add....</label>
                 </div> -->

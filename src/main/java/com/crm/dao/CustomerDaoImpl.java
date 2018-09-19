@@ -50,5 +50,12 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 	}
 
+//	@Override
+//	public void saveImage(ImageKeeper theImageKeeper) {
+//		Session currentSession = sessionFactory.getCurrentSession();
+//		currentSession.saveOrUpdate(theImageKeeper);
+//		
+//	}
+
 	
 }

@@ -12,4 +12,6 @@ public interface CustomerService {
 	public void deleteCustomer(int id);
 
 	public void saveCustomer(Customer theCustomer);
+
+//	public void saveImage(ImageKeeper theImageKeeper);
 }
