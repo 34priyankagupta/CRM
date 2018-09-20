@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.crm.dao.CustomerDao;
 import com.crm.entity.Customer;
+import com.crm.entity.ImageKeeper;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -40,11 +41,11 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	}
 
-//	@Override
-//	public void saveImage(ImageKeeper theImageKeeper) {
-//		customerDao.saveImage(theImageKeeper);
-//		
-//	}
+	@Override
+	public void saveImage(ImageKeeper theImageKeeper) {
+		customerDao.saveImage(theImageKeeper);
+		
+	}
 	
 	
 

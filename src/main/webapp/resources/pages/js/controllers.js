@@ -58,73 +58,70 @@
 		$state.go("main");
 	}]);
 
-
-
 	app.controller("addCustomerController", ["$scope", "$state", "customerFactory", "Notification",
 		function ($scope, $state, customerFactory, Notification) {
 
-			var formdata = new FormData();
-			$scope.getTheFiles = function (files) {
-				console.log("file added ", files);
-				// angular.forEach(files, function (value, key) {
-				// 	console.log("value found: " + value);
-				// 	console.log("key found: " + key);
-				// 	formdata.append(key, value);
-				// });
-				// console.log("Updatedformdata: ", formdata);
+			var res;
+			var reader = new FileReader();
+			var blobData;
 
-				// console.log("trying some reader part");
-				// var testToBinary = window.btoa(files);
-				// console.log("binary file form: ", testToBinary);
-				// var reader = new FileReader();
-				// console.log("reader", reader);
-				// reader.onloadend = function () {
-				// 	console.log("reader.result", reader.result);
-				// }
-				// reader.readAsText(testToBinary);
+			$scope.selectDocument = false;
+			$scope.showImagePreview = false;
 
+			$scope.getTheFiles = function (files, target) {
+				console.log("target now ", target);
+				blobData = new Blob(files);
+				console.log(files);
+				if (!(files[0].type === "text/plain")) {
+					target.value = null;
+					$scope.selectDocument = false;
+					$scope.$digest();
+					Notification.warning("Please select plain text file!");
+					return;
+				} else {
+					$scope.selectDocument = true;
+					$scope.$digest();
+					reader.readAsText(blobData);
+					reader.onload = function () {
+						res = reader.result;
+						$scope.documentData = res;
+						var encode = window.btoa(res);
+						$scope.showDocument = function () {
+							$scope.documentData = res;
+						}
+					};
 
-
-				var reader = new FileReader();
-				console.log("reader data: ", reader);
-
-				var blob = new Blob(files);
-				reader.readAsText(blob);
-				
-				reader.onload = function () {	
-					var res = reader.result;				
-					console.log("result found onload : ", res);
-				};
-
-				reader.onloadend = function () {
-					var res = reader.result;
-					console.log("result found onloadend : ", res);
-				}
-
-				reader.onloadstart = function () {
-					var res = reader.result;
-					console.log("result found onloadstart : ", res);
 				}
 
 			};
 
-			// console.log("formdata: ", formdata);
+			$scope.getTheImage = function (files, target) {
+				console.log("target now ", target);
+				blobData = new Blob(files);
+				if (!(files[0].type === "image/jpeg")) {
+					target.value = null;
+					Notification.warning("Please select an image (jpeg,jpg,png..)!");
+					return;
+				} else {
+					reader.readAsDataURL(blobData);
+					reader.onload = function () {
+						$scope.showImagePreview = true;
+						res = reader.result;
+						var imagePreview = document.querySelector('.imagePreview');
+						imagePreview.src = res;
+						$scope.$digest();
+					};
+				}
+				$scope.clearProfile = function () {
+					console.log("clicked clear");
+					files, blobData = null;
+					$scope.$apply = function () {
+						$scope.showImagePreview = false;
+						$scope.$digest();
+						target.value = null;
+					}
 
-			// console.log("in add");
-
-			// fileChange = function(){
-			// 	console.log("file added: ", $scope.fileModel);
-			// 	console.log("event.target", event.target);
-			// }
-
-
-
-
-			if (($scope.firstName)) {
-				console.log("required first name");
-				$scope.disableAddCustomer = true;
-			} else {
-				$scope.disableAddCustomer = false;
+				}
 			}
 
 			$scope.saveNewCustomer = function () {

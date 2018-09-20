@@ -3,6 +3,7 @@ package com.crm.dao;
 import java.util.List;
 
 import com.crm.entity.Customer;
+import com.crm.entity.ImageKeeper;
 
 public interface CustomerDao {
 
@@ -14,5 +15,5 @@ public interface CustomerDao {
 
 	public void saveCustomer(Customer theCustomer);
 
-//	public void saveImage(ImageKeeper theImageKeeper);
+	public void saveImage(ImageKeeper theImageKeeper);
 }

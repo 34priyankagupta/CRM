@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crm.entity.Customer;
+import com.crm.entity.ImageKeeper;
 import com.crm.exceptionHandling.CustomerNotFoundException;
 import com.crm.service.CustomerService;
 
@@ -65,9 +66,9 @@ public class CustomerRestController {
 		return theCustomer;
 	}
 	
-//	@PostMapping("/customers/image")
-//	public ImageKeeper imageKeeper(@RequestBody ImageKeeper theImageKeeper) {
-//		customerService.saveImage(theImageKeeper);
-//		return theImageKeeper;
-//	}
+	@PostMapping("/customers/image")
+	public ImageKeeper imageKeeper(@RequestBody ImageKeeper theImageKeeper) {
+		customerService.saveImage(theImageKeeper);
+		return theImageKeeper;
+	}
 }

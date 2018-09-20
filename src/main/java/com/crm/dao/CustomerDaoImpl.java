@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.crm.entity.Customer;
+import com.crm.entity.ImageKeeper;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
@@ -50,12 +51,12 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 	}
 
-//	@Override
-//	public void saveImage(ImageKeeper theImageKeeper) {
-//		Session currentSession = sessionFactory.getCurrentSession();
-//		currentSession.saveOrUpdate(theImageKeeper);
-//		
-//	}
+	@Override
+	public void saveImage(ImageKeeper theImageKeeper) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.saveOrUpdate(theImageKeeper);
+		
+	}
 
 	
 }

@@ -10,7 +10,23 @@
             <div class="flex-item">
                 <div class="col-md-6">
                     <label>
-                        <strong class="customizedLabel">First Name</strong>
+                        <strong class="customizedLabel" ng-hide="showImagePreview">Profile</strong>
+                        <img src="" alt="Profile" ng-show="showImagePreview" class="imagePreview">
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <div class="box">
+                        <button ng-click="clearProfile()" title="Remove profile" ng-disabled="!showImagePreview"><i
+                                class="fa fa-user-times"></i></button>
+                        <input type="file" ng-files="getTheImage(files,target)" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-item">
+                <div class="col-md-6">
+                    <label>
+                        <strong class="customizedLabel">First Name <i class="text-danger">*</i></strong>
                     </label>
                 </div>
                 <div class="col-md-6">
@@ -22,21 +38,22 @@
             <div class="flex-item">
                 <div class="col-md-6">
                     <label>
-                        <strong class="customizedLabel">Last Name</strong>
+                        <strong class="customizedLabel">Last Name <i class="text-danger">*</i></strong>
+
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" placeholder="Last Name" name="lastName" ng-model="lastName" required>
+                    <input type="text" placeholder="Last Name" name="lastName" ng-model="lastName">
                 </div>
             </div>
             <div class="flex-item">
                 <div class="col-md-6">
                     <label>
-                        <strong class="customizedLabel">Email</strong>
+                        <strong class="customizedLabel">Email <i class="text-danger">*</i></strong>
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" placeholder="Email" name="email" ng-model="email" required>
+                    <input type="text" placeholder="Email" name="email" ng-model="email">
                 </div>
             </div>
             <div class="flex-item">
@@ -95,14 +112,14 @@
             <div class="flex-item">
                 <div class="col-md-6">
                     <label>
-                        <button ng-click="showDocument()" title="Display document uploaded"><i class="fas fa-align-justify"></i></button>
                         <strong class="customizedLabel">Add details</strong>
                     </label>
                 </div>
-                <div class="box">
-
-                    <div class="col-md-6">
-                        <input type="file" ng-model="image" ng-files="getTheFiles(files)" />
+                <div class="col-md-6">
+                    <div class="box">
+                        <button ng-click="showDocument()" title="Display document uploaded" ng-disabled="!selectDocument">
+                            <i class="fa fa-align-justify"></i></button>
+                        <input type="file" ng-files="getTheFiles(files,target)" />
                     </div>
                 </div>
             </div>
@@ -120,10 +137,8 @@
                 </div>
             </div>
 
-
-            <!-- <div>
-                    <label ng-show="disableAddCustomer" class="stillFetching"> Please wait while we add....</label>
-                </div> -->
         </div>
     </form>
+
+    {{documentData}}
 </div>

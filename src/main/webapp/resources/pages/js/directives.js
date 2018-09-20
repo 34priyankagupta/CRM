@@ -8,37 +8,15 @@
         }
     })
 
-    // app.directive('ngFiles', ['$parse', function ($parse) {
-
-    //     function fn_link(scope, element, attrs) {
-    //         var onChange = $parse(attrs.ngFiles);
-    //         console.log("1.  onchane internal function: ",onChange);
-    //         element.on('change', function (event) {
-    //             console.log("event captured: ",event);
-    //             onChange(scope, {
-    //                 $files: event.target.files
-    //             });
-    //         });
-    //         console.log("2.   onchane internal function: ",onChange);
-    //     };
-
-    //     return {
-    //         link: fn_link
-    //     }
-    // }])
-
     app.directive('ngFiles', ['$parse', function ($parse) {
 
         function fn_link(scope, element, attrs) {
-            // console.log("ngFiles",ngFiles);
-            console.log("attrs", attrs);
-            console.log("attrs.ngFiles", attrs.ngFiles);
             var fileAdd = $parse(attrs.ngFiles);
-            console.log("attrs.ngFiles after $parse", fileAdd);
+            console.log("attrs.ngFiles",attrs.ngFiles);
             element.on('change', function (event) {
-                console.log("event.target: ", event.target.files[0]);
                 fileAdd(scope, {
-                    files: event.target.files
+                    files: event.target.files,
+                    target: event.target
                 });
             });
         };
@@ -47,7 +25,6 @@
             link: fn_link
         }
     }])
-
 
     app.directive("flexDropdownHead", ["$document", function ($document) {
         return {

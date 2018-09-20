@@ -10,19 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="image_keeper")
-public class ImageKeeper {
-	
+@Table(name="document_keeper")
+public class DocumentKeeper {
+
 	@Column(name="id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="data")
-	private byte[] data;
+	@Column(name="document")
+	private byte[] document;
 	
-	public ImageKeeper() {
-		
+	public DocumentKeeper() {
+	
 	}
 
 	public int getId() {
@@ -33,17 +33,16 @@ public class ImageKeeper {
 		this.id = id;
 	}
 
-	public byte[] getData() {
-		return data;
+	public byte[] getDocument() {
+		return document;
 	}
 
-	public void setData(byte[] data) {
-		this.data = data;
+	public void setDocument(byte[] document) {
+		this.document = document;
 	}
 
 	@Override
 	public String toString() {
-		return "ImageKeeper [id=" + id + ", data=" + Arrays.toString(data) + "]";
+		return "DocumentKeeper [id=" + id + ", document=" + Arrays.toString(document) + "]";
 	}
-	
 }
