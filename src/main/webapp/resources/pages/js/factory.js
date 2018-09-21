@@ -64,6 +64,13 @@
 				method: `GET`
 			});
 		}
+
+		// post image
+		oCustomerFactory.saveImage = function(image){
+			return $http({
+				url: `api/customers/image`
+			})
+		}
 	    
 	    return oCustomerFactory;
 		

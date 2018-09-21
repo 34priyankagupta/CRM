@@ -90,9 +90,7 @@
 							$scope.documentData = res;
 						}
 					};
-
 				}
-
 			};
 
 			$scope.getTheImage = function (files, target) {
@@ -109,6 +107,8 @@
 						res = reader.result;
 						var imagePreview = document.querySelector('.imagePreview');
 						imagePreview.src = res;
+						console.log("target.value : ",target.value);
+						$scope.imageModel = res;
 						$scope.$digest();
 					};
 				}
@@ -120,17 +120,18 @@
 						$scope.$digest();
 						target.value = null;
 					}
-
 				}
 			}
 
 			$scope.saveNewCustomer = function () {
 				$scope.disableAddCustomer = true;
+				
 				var data = {
 					firstName: $scope.firstName,
 					lastName: $scope.lastName,
 					email: $scope.email
 				};
+				
 				customerFactory.saveCustomer(data).then(function (r) {
 					console.log("image:::", $scope.image);
 					Notification.success({
@@ -144,6 +145,11 @@
 						delay: 1000
 					});
 				}))
+
+				var documentData = $scope.documentData;
+				var imageModel = $scope.imageModel;
+
+				
 
 			};
 

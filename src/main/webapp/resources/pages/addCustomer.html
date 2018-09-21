@@ -18,7 +18,7 @@
                     <div class="box">
                         <button ng-click="clearProfile()" title="Remove profile" ng-disabled="!showImagePreview"><i
                                 class="fa fa-user-times"></i></button>
-                        <input type="file" ng-files="getTheImage(files,target)" />
+                        <input type="file" ng-files="getTheImage(files,target)" ng-model="imageModel" />
                     </div>
                 </div>
             </div>
@@ -31,9 +31,8 @@
                 </div>
                 <div class="col-md-6">
                     <input type="text" placeholder="First Name" name="firstName" ng-model="firstName">
-
                 </div>
-                <!-- <span ng-hide="addForm.firstName.$error.required">Please enter name!</span> -->
+               
             </div>
             <div class="flex-item">
                 <div class="col-md-6">
@@ -119,7 +118,7 @@
                     <div class="box">
                         <button ng-click="showDocument()" title="Display document uploaded" ng-disabled="!selectDocument">
                             <i class="fa fa-align-justify"></i></button>
-                        <input type="file" ng-files="getTheFiles(files,target)" />
+                        <input type="file" ng-files="getTheFiles(files,target)"  ng-model="documentData"/>
                     </div>
                 </div>
             </div>

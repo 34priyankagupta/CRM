@@ -21,6 +21,9 @@ public class DocumentKeeper {
 	@Column(name="document")
 	private byte[] document;
 	
+	@Column(name="customer_id")
+	private int customerId;
+	
 	public DocumentKeeper() {
 	
 	}
@@ -41,8 +44,17 @@ public class DocumentKeeper {
 		this.document = document;
 	}
 
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
 	@Override
 	public String toString() {
-		return "DocumentKeeper [id=" + id + ", document=" + Arrays.toString(document) + "]";
+		return "DocumentKeeper [id=" + id + ", document=" + Arrays.toString(document) + ", customerId=" + customerId
+				+ "]";
 	}
 }

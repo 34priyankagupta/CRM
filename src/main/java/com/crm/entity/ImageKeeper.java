@@ -21,6 +21,9 @@ public class ImageKeeper {
 	@Column(name="data")
 	private byte[] data;
 	
+	@Column(name="customer_id")
+	private int customerId;
+	
 	public ImageKeeper() {
 		
 	}
@@ -41,9 +44,17 @@ public class ImageKeeper {
 		this.data = data;
 	}
 
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
 	@Override
 	public String toString() {
-		return "ImageKeeper [id=" + id + ", data=" + Arrays.toString(data) + "]";
+		return "ImageKeeper [id=" + id + ", data=" + Arrays.toString(data) + ", customerId=" + customerId + "]";
 	}
 	
 }
