@@ -41,10 +41,18 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	}
 
+	@Transactional
 	@Override
 	public void saveImage(ImageKeeper theImageKeeper) {
 		customerDao.saveImage(theImageKeeper);
 		
+	}
+
+	@Transactional
+	@Override
+	public ImageKeeper getImage(String email) {
+		System.out.println("Inside getimage service, email"+email+"email");
+		return customerDao.getImage(email);
 	}
 	
 	

@@ -16,4 +16,6 @@ public interface CustomerDao {
 	public void saveCustomer(Customer theCustomer);
 
 	public void saveImage(ImageKeeper theImageKeeper);
+
+	public ImageKeeper getImage(String email);
 }

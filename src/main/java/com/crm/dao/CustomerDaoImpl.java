@@ -53,9 +53,21 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void saveImage(ImageKeeper theImageKeeper) {
+		System.out.println("image data in string: "+ theImageKeeper.getImage().toString());
+		System.out.println("image data: "+ theImageKeeper.getImage());
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.saveOrUpdate(theImageKeeper);
 		
+	}
+
+	@Override
+	public ImageKeeper getImage(String email) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<ImageKeeper> theQuery = currentSession.createQuery("from ImageKeeper where customerEmail=:thisEmail",ImageKeeper.class);
+		theQuery.setParameter("thisEmail", email);
+		System.out.println("size: "+theQuery.getFetchSize());
+		System.out.println("total length: "+theQuery.getResultList().size());
+		return theQuery.getResultList().get(0);
 	}
 
 	

@@ -22,12 +22,25 @@
 			$scope.showCustomerDetails = function (a) {
 				console.log("params", a);
 				$scope.stateChangingStart = true;
+
+				// Fetching general data
+				var email;
 				customerFactory.getCustomer(a).then((res) => {
 					$scope.stateChangingStart = false;
 					$scope.showDetails = true;
 					$scope.customerData = res.data;
+					email = res.data.email;
 					$scope.pageSize = 4;
 					console.log("res.data", res.data);
+
+					// Fetching profile photo
+					console.log("email:", email);
+					customerFactory.getImage(email).then((r) => {
+						$scope.customerData.image = window.atob(r.data.image);
+						console.log("image response: ", res);
+						document.querySelector(".showProfile").src = window.atob(r.data.image);
+					}).catch((e) => console.log("error occured: ", e));
+
 				}).catch((e) => {
 					$scope.stateChangingStart = false;
 					Notification.error({
@@ -36,6 +49,8 @@
 					});
 					console.log("error occurred", e);
 				})
+
+
 
 				$document.bind("click", function () {
 					console.log("clicking somewhere else");
@@ -107,7 +122,7 @@
 						res = reader.result;
 						var imagePreview = document.querySelector('.imagePreview');
 						imagePreview.src = res;
-						console.log("target.value : ",target.value);
+						console.log("target.value : ", target.value);
 						$scope.imageModel = res;
 						$scope.$digest();
 					};
@@ -125,15 +140,14 @@
 
 			$scope.saveNewCustomer = function () {
 				$scope.disableAddCustomer = true;
-				
+
 				var data = {
 					firstName: $scope.firstName,
 					lastName: $scope.lastName,
 					email: $scope.email
 				};
-				
+
 				customerFactory.saveCustomer(data).then(function (r) {
-					console.log("image:::", $scope.image);
 					Notification.success({
 						message: 'Customer added'
 					});
@@ -149,7 +163,22 @@
 				var documentData = $scope.documentData;
 				var imageModel = $scope.imageModel;
 
-				
+
+				if (!(imageModel === null || undefined)) {
+					console.log("since image is not null");
+					var image = {
+						customerEmail: $scope.email,
+						image: window.btoa($scope.imageModel)
+					}
+					customerFactory.saveImage(image).then(function (res) {
+						console.log("success msg for saving image: ", res);
+						Notification.success({
+							message: 'Image added'
+						});
+					}).catch(function (e) {
+						console.log(e);
+					})
+				}
 
 			};
 

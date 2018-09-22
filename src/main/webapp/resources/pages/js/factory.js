@@ -66,10 +66,22 @@
 		}
 
 		// post image
-		oCustomerFactory.saveImage = function(image){
+		oCustomerFactory.saveImage = function(data){
+			console.log("entering saveImage factory method");
 			return $http({
-				url: `api/customers/image`
+				url: `api/customers/image`,
+				method: 'POST',
+				data
 			})
+		}
+
+		// get image based on email
+		oCustomerFactory.getImage = function(email){
+			console.log("email in factory: ",email);
+			return $http({
+				url: `api/customers/image/${email}/`,
+				method: `GET`
+			});
 		}
 	    
 	    return oCustomerFactory;

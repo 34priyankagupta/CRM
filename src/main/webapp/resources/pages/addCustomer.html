@@ -11,7 +11,7 @@
                 <div class="col-md-6">
                     <label>
                         <strong class="customizedLabel" ng-hide="showImagePreview">Profile</strong>
-                        <img src="" alt="Profile" ng-show="showImagePreview" class="imagePreview">
+                        <img src="" alt="Profile" ng-show="showImagePreview" class="imagePreview" title="Profile">
                     </label>
                 </div>
                 <div class="col-md-6">
@@ -32,7 +32,7 @@
                 <div class="col-md-6">
                     <input type="text" placeholder="First Name" name="firstName" ng-model="firstName">
                 </div>
-               
+
             </div>
             <div class="flex-item">
                 <div class="col-md-6">
@@ -118,7 +118,7 @@
                     <div class="box">
                         <button ng-click="showDocument()" title="Display document uploaded" ng-disabled="!selectDocument">
                             <i class="fa fa-align-justify"></i></button>
-                        <input type="file" ng-files="getTheFiles(files,target)"  ng-model="documentData"/>
+                        <input type="file" ng-files="getTheFiles(files,target)" ng-model="documentData" />
                     </div>
                 </div>
             </div>

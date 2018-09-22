@@ -1,5 +1,6 @@
 package com.crm.entity;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import javax.persistence.Column;
@@ -10,22 +11,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="image_keeper")
+@Table(name = "image_keeper")
 public class ImageKeeper {
-	
-	@Column(name="id")
+
+	/**
+	 * 
+	 */
+//	private static final long serialVersionUID = 1L;
+
+	@Column(name = "id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="data")
-	private byte[] data;
-	
-	@Column(name="customer_id")
-	private int customerId;
-	
+
+	@Column(name = "image")
+	private byte[] image;
+
+	@Column(name = "customer_email")
+	private String customerEmail;
+
 	public ImageKeeper() {
-		
+
 	}
 
 	public int getId() {
@@ -36,25 +42,24 @@ public class ImageKeeper {
 		this.id = id;
 	}
 
-	public byte[] getData() {
-		return data;
+	public byte[] getImage() {
+		return image;
 	}
 
-	public void setData(byte[] data) {
-		this.data = data;
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
-	public int getCustomerId() {
-		return customerId;
+	public String getCustomerEmail() {
+		return customerEmail;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
 
 	@Override
 	public String toString() {
-		return "ImageKeeper [id=" + id + ", data=" + Arrays.toString(data) + ", customerId=" + customerId + "]";
+		return "ImageKeeper [id=" + id + ", image=" + Arrays.toString(image) + ", customerEmail=" + customerEmail + "]";
 	}
-	
 }

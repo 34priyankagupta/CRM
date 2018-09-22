@@ -15,4 +15,6 @@ public interface CustomerService {
 	public void saveCustomer(Customer theCustomer);
 
 	public void saveImage(ImageKeeper theImageKeeper);
+
+	public ImageKeeper getImage(String email);
 }

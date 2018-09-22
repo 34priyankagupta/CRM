@@ -23,15 +23,12 @@
                     <td ng-click="showCustomerDetails(oEmp.id)" class="empId">{{oEmp.lastName}}</td>
                     <td ng-click="showCustomerDetails(oEmp.id)" class="empId">{{oEmp.email}}</td>
                     <td>
-                        <!-- <a ui-sref="deleteCustomer({id:oEmp.id})"> -->
-                        <!-- <a href="#!/deleteCustomer/{{oEmp.id}}"> -->
                         <button class="btn btn-default" title="Delete Customer permanently">
                             <a href="#!/deleteCustomer/{{oEmp.id}}" class="progressfile">Delete</a>
-                        </button> <!-- </a> -->
-                        <!-- <a href="#!/updateCustomer/{{oEmp.id}}" class="progressfile"> -->
+                        </button>
                         <button class="btn btn-default" title="Update Customer">
                             <a href="#!/updateCustomer/{{oEmp.id}}" class="progressfile">Update</a>
-                        </button> <!-- </a> -->
+                        </button>
 
                     </td>
                     <customer-details obj="customerData" ng-show="showDetails"></customer-details>

@@ -1,20 +1,31 @@
 <style>
-    .details{
+    .details {
         border: 1px solid rgb(224, 224, 224);
         margin-bottom: 15px;
         padding: 2px;
         height: 50px;
         border-radius: 1px;
     }
+
     .details label,
     .details div {
         margin: 0;
         font-size: 95%;
     }
+
+    .showProfile{
+        height: 40px;
+        width: 50px;
+    }
 </style>
 
 <div class="details">
-    <div class="col-md-6">
+    <div class="col-md-4">
+        <div>
+            <img src="" alt="Profile" class="showProfile">
+        </div>
+    </div>
+    <div class="col-md-4">
         <div>
             <i class="fa fa-id-badge"> </i>
             <label> Id: </label>{{info.id}}
@@ -24,7 +35,7 @@
             <label> Name: </label> {{info.firstName}}
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div>
             <i class="fa fa-user"> </i>
             <label> LastName: </label> {{info.lastName}}
