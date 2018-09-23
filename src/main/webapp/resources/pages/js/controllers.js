@@ -20,7 +20,6 @@
 			$scope.showDetails = false;
 
 			$scope.showCustomerDetails = function (a) {
-				console.log("params", a);
 				$scope.stateChangingStart = true;
 
 				// Fetching general data
@@ -30,7 +29,7 @@
 					$scope.showDetails = true;
 					$scope.customerData = res.data;
 					email = res.data.email;
-					$scope.pageSize = 4;
+					$scope.pageSize = 2;
 					console.log("res.data", res.data);
 
 					// Fetching profile photo
@@ -39,7 +38,10 @@
 						$scope.customerData.image = window.atob(r.data.image);
 						console.log("image response: ", res);
 						document.querySelector(".showProfile").src = window.atob(r.data.image);
-					}).catch((e) => console.log("error occured: ", e));
+					}).catch((e) => {
+						console.log("error occured: ", e);
+						document.querySelector(".showProfile").src = null;
+					});
 
 				}).catch((e) => {
 					$scope.stateChangingStart = false;
