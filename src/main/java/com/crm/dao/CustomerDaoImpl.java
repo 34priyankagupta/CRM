@@ -43,9 +43,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void saveCustomer(Customer theCustomer) {
-		System.out.println(theCustomer.getId());
-		System.out.println(theCustomer.getFirstName());
-		System.out.println();
+		System.out.println("came in dao impl");
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.saveOrUpdate(theCustomer);
 		
