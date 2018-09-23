@@ -151,34 +151,36 @@
 					Notification.success({
 						message: 'Customer added'
 					});
+					var documentData = $scope.documentData;
+					var imageModel = $scope.imageModel;
+
+
+					if (!(imageModel === null || undefined)) {
+						console.log("since image is not null");
+						var image = {
+							customerEmail: $scope.email,
+							image: window.btoa($scope.imageModel)
+						}
+						customerFactory.saveImage(image).then(function (res) {
+							console.log("success msg for saving image: ", res);
+							Notification.success({
+								message: 'Image added'
+							});
+						}).catch(function (e) {
+							console.log("Could not add image: ", e);
+							Notification.error({
+								message: e.data.message
+							});
+						})
+					}
 					$state.go("customerList");
 				}).catch((function (e) {
 					console.log(e);
 					Notification.error({
-						message: e.data.message,
-						delay: 1000
+						message: e.data.message+`\nPlease try again!`
 					});
+					$scope.disableAddCustomer = false;
 				}))
-
-				var documentData = $scope.documentData;
-				var imageModel = $scope.imageModel;
-
-
-				if (!(imageModel === null || undefined)) {
-					console.log("since image is not null");
-					var image = {
-						customerEmail: $scope.email,
-						image: window.btoa($scope.imageModel)
-					}
-					customerFactory.saveImage(image).then(function (res) {
-						console.log("success msg for saving image: ", res);
-						Notification.success({
-							message: 'Image added'
-						});
-					}).catch(function (e) {
-						console.log(e);
-					})
-				}
 
 			};
 

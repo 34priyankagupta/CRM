@@ -4,18 +4,19 @@ import java.util.List;
 
 import com.crm.entity.Customer;
 import com.crm.entity.ImageKeeper;
+import com.crm.exceptionHandling.CustomerNotFoundException;
 
 public interface CustomerDao {
 
-	public List<Customer> getCustometers();
+	public List<Customer> getCustometers() throws CustomerNotFoundException;
 
-	public Customer getCustomer(int id);
+	public Customer getCustomer(int id) throws CustomerNotFoundException;
 
-	public void deleteCustomer(int id);
+	public void deleteCustomer(int id) throws CustomerNotFoundException;
 
-	public void saveCustomer(Customer theCustomer);
+	public void saveCustomer(Customer theCustomer) throws CustomerNotFoundException;
 
-	public void saveImage(ImageKeeper theImageKeeper);
+	public void saveImage(ImageKeeper theImageKeeper) throws CustomerNotFoundException;
 
-	public ImageKeeper getImage(String email);
+	public ImageKeeper getImage(String email) throws CustomerNotFoundException;
 }
