@@ -22,7 +22,7 @@
                     <td ng-click="showCustomerDetails(oEmp.id)" class="empId">{{oEmp.firstName}}</td>
                     <td ng-click="showCustomerDetails(oEmp.id)" class="empId">{{oEmp.lastName}}</td>
                     <td ng-click="showCustomerDetails(oEmp.id)" class="empId">{{oEmp.email}}</td>
-                    <td>
+                    <td stop-click-bubbling>
                         <button class="btn btn-default" title="Delete Customer permanently">
                             <a href="#!/deleteCustomer/{{oEmp.id}}" class="progressfile">Delete</a>
                         </button>

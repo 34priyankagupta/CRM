@@ -12,7 +12,7 @@
 
         function fn_link(scope, element, attrs) {
             var fileAdd = $parse(attrs.ngFiles);
-            console.log("attrs.ngFiles",attrs.ngFiles);
+            console.log("attrs.ngFiles", attrs.ngFiles);
             element.on('change', function (event) {
                 fileAdd(scope, {
                     files: event.target.files,
@@ -84,9 +84,39 @@
         }
     })
 
+    app.directive("stopClickBubbling", function () {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attr) {
+                elem.on("click", function (event) {
+                    console.log("stopped bubbling");
+                    event.stopPropagation();
+                })
+            }
+        }
+    })
+
+    app.directive("fileread", [function () {
+        console.log("fileread");
+        return {
+            scope: {
+                fileread: "="
+            },
+            link: function (scope, element, attributes) {
+                element.bind("change", function (changeEvent) {
+                    scope.$apply(function () {
+                        scope.fileread = changeEvent.target.files[0];
+                        // or all selected files:
+                        // scope.fileread = changeEvent.target.files;
+                    });
+                });
+            }
+        }
+    }]);
+
     // app.directive("documentModel", function(){
     //     return{
-            
+
     //     }
     // });
 

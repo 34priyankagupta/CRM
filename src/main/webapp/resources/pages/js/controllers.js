@@ -19,29 +19,45 @@
 
 			$scope.showDetails = false;
 
+
+
+			// showPrfile.addEventListener("click", function (e) {
+			// 	console.log("bubbling.. ",e);
+			// 	e.stopPropagation();
+			// },true)
+
+			console.log("$document", $document);
 			$scope.showCustomerDetails = function (a) {
+
+				var showPrfile = document.querySelector(".showProfile");
 				$scope.stateChangingStart = true;
 
 				// Fetching general data
 				var email;
+
+				showPrfile.src = null;
 				customerFactory.getCustomer(a).then((res) => {
 					$scope.stateChangingStart = false;
 					$scope.showDetails = true;
 					$scope.customerData = res.data;
 					email = res.data.email;
 					$scope.pageSize = 2;
-					console.log("res.data", res.data);
+					// console.log("res.data", res.data);
 
-					// Fetching profile photo
-					console.log("email:", email);
+					// // Fetching profile photo
+					// console.log("email:", email);
 					customerFactory.getImage(email).then((r) => {
 						$scope.customerData.image = window.atob(r.data.image);
 						console.log("image response: ", res);
-						document.querySelector(".showProfile").src = window.atob(r.data.image);
+						showPrfile.src = window.atob(r.data.image);
 					}).catch((e) => {
 						console.log("error occured: ", e);
-						document.querySelector(".showProfile").src = null;
+						showPrfile.src = null;
 					});
+
+					$scope.updateProfile = function(){
+						console.log("yeyy");
+					}
 
 				}).catch((e) => {
 					$scope.stateChangingStart = false;
@@ -179,7 +195,7 @@
 				}).catch((function (e) {
 					console.log(e);
 					Notification.error({
-						message: e.data.message+`\nPlease try again!`
+						message: e.data.message + `\nPlease try again!`
 					});
 					$scope.disableAddCustomer = false;
 				}))
