@@ -8,6 +8,14 @@
         }
     })
 
+    app.directive("miniSpinner", function () {
+        return {
+            restrict: "AEC",
+            templateUrl: 'resources/pages/littleLoader.html'
+        }
+    })
+
+
     app.directive('ngFiles', ['$parse', function ($parse) {
 
         function fn_link(scope, element, attrs) {
@@ -96,23 +104,23 @@
         }
     })
 
-    app.directive("fileread", [function () {
-        console.log("fileread");
-        return {
-            scope: {
-                fileread: "="
-            },
-            link: function (scope, element, attributes) {
-                element.bind("change", function (changeEvent) {
-                    scope.$apply(function () {
-                        scope.fileread = changeEvent.target.files[0];
-                        // or all selected files:
-                        // scope.fileread = changeEvent.target.files;
-                    });
-                });
-            }
-        }
-    }]);
+    // app.directive("fileread", [function () {
+    //     console.log("fileread");
+    //     return {
+    //         scope: {
+    //             fileread: "="
+    //         },
+    //         link: function (scope, element, attributes) {
+    //             element.bind("change", function (changeEvent) {
+    //                 scope.$apply(function () {
+    //                     scope.fileread = changeEvent.target.files[0];
+    //                     // or all selected files:
+    //                     // scope.fileread = changeEvent.target.files;
+    //                 });
+    //             });
+    //         }
+    //     }
+    // }]);
 
     // app.directive("documentModel", function(){
     //     return{

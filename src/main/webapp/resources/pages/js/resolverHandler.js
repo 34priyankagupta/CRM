@@ -15,6 +15,9 @@
                     $rootScope.stateChangingStart = false;
                 }
             })
+        $rootScope.$on("$stateChangeError", function (e) {
+            console.log("stateChangeError", e)
+        })
     }])
 
 

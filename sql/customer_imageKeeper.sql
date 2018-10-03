@@ -12,8 +12,6 @@ CREATE TABLE `customer` (
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL UNIQUE,
-  PRIMARY KEY (`id`),
-  KEY `FK_DETAIL_idx` (`email`),
-  CONSTRAINT `FK_DETAIL` FOREIGN KEY (`email`) REFERENCES `image_keeper` (`customer_email`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+  PRIMARY KEY (`id`)
+ );
 

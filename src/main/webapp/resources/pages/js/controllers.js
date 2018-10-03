@@ -19,13 +19,6 @@
 
 			$scope.showDetails = false;
 
-
-
-			// showPrfile.addEventListener("click", function (e) {
-			// 	console.log("bubbling.. ",e);
-			// 	e.stopPropagation();
-			// },true)
-
 			console.log("$document", $document);
 			$scope.showCustomerDetails = function (a) {
 
@@ -42,10 +35,8 @@
 					$scope.customerData = res.data;
 					email = res.data.email;
 					$scope.pageSize = 2;
-					// console.log("res.data", res.data);
 
-					// // Fetching profile photo
-					// console.log("email:", email);
+					// Fetching profile photo
 					customerFactory.getImage(email).then((r) => {
 						$scope.customerData.image = window.atob(r.data.image);
 						console.log("image response: ", res);
@@ -55,7 +46,7 @@
 						showPrfile.src = null;
 					});
 
-					$scope.updateProfile = function(){
+					$scope.updateProfile = function () {
 						console.log("yeyy");
 					}
 
@@ -127,13 +118,29 @@
 			};
 
 			$scope.getTheImage = function (files, target) {
-				console.log("target now ", target);
+				console.log("files ", files);
 				blobData = new Blob(files);
 				if (!(files[0].type === "image/jpeg")) {
+					files,
+					blobData = null;
 					target.value = null;
-					Notification.warning("Please select an image (jpeg,jpg,png..)!");
+					Notification.warning("Please select an image (jpeg,jpg.)!");
+					$scope.showImagePreview = false;
+					$scope.imageModel = null;
+					$scope.$digest();
 					return;
-				} else {
+				}
+				else if ((files[0].size > 1500000)) {
+					files,
+					blobData = null;
+					target.value = null;
+					Notification.warning("Please select an image less than 1.5 MB <br>Try again");
+					$scope.showImagePreview = false;
+					$scope.imageModel = null;
+					$scope.$digest();
+					return;
+				}
+				else {
 					reader.readAsDataURL(blobData);
 					reader.onload = function () {
 						$scope.showImagePreview = true;
@@ -142,21 +149,21 @@
 						imagePreview.src = res;
 						console.log("target.value : ", target.value);
 						$scope.imageModel = res;
-						$scope.$digest();
+						// $scope.$digest();
 					};
 				}
 				$scope.clearProfile = function () {
 					console.log("clicked clear");
 					files, blobData = null;
-					$scope.$apply = function () {
-						$scope.showImagePreview = false;
-						$scope.$digest();
+					$scope.imageModel = null;
+					console.log("target value after clicking",target);
 						target.value = null;
-					}
+						$scope.showImagePreview = false;
 				}
 			}
 
 			$scope.saveNewCustomer = function () {
+				console.log("saving..");
 				$scope.disableAddCustomer = true;
 
 				var data = {
@@ -195,7 +202,7 @@
 				}).catch((function (e) {
 					console.log(e);
 					Notification.error({
-						message: e.data.message + `\nPlease try again!`
+						message: e.data.message + `<br>Please try again!`
 					});
 					$scope.disableAddCustomer = false;
 				}))
@@ -260,6 +267,7 @@
 					$scope.place = null;
 					$scope.all[0].name = e.data.message;
 					$scope.errorPlace = true;
+					Notification.error("Zip could not be searched<br>Network problem, try again!");
 				});
 
 			}
@@ -311,6 +319,7 @@
 					$scope.zip = null;
 					$scope.allZip[0].Name = e.data.Message;
 					$scope.error = true;
+					Notification.error("Zip could not be searched<br>Network problem, try again!");
 				})
 
 			}

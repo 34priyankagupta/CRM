@@ -3,7 +3,7 @@
     line-height: 150%;
     box-sizing: border-box;
     font-family: ubuntu;
-    color: rgb(92, 91, 91);
+    /* color: rgb(92, 91, 91); */
     transition: all 0.3s;
 }
 
