@@ -1,0 +1,3 @@
+Property binding: It works only one way ie, from component to the DOM. Any changes made in DOM are not reflected in the component.
+
+Attribute binding: 
