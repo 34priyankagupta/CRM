@@ -1,0 +1,196 @@
+Difference between angular-route and angular-ui-router?
+
+1. ui-router allows for nested views and multiple named views.
+
+
+
+
+Watches are set on:
+
+	$scope.$watch
+	{{ }} type bindings
+	Most directives (i.e. ng-show)
+	Scope variables scope: { bar: '='}
+	Filters {{ value | myFilter }}
+	ng-repeat
+	
+
+----------------------------------------------------DIRECTIVES--------------------------------------------------------------
+
+Compile:  For AngularJS, "compilation" means attaching directives to the HTML to make it interactive.
+
+For restrict: When should I use an attribute versus an element? Use an element when you are creating a component that is in control of the template. Use an attribute when you are decorating an existing element with new functionality.
+
+Isolate scope:  separate the scope inside a directive from the scope outside in the controller, and then map the outer scope to a directive's inner scope. 
+
+script.js
+-----------
+angular.module('docsIsolateScopeDirective', [])
+.controller('Controller', ['$scope', function($scope) {
+  $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
+  $scope.igor = { name: 'Igor', address: '123 Somewhere' };
+}])
+.directive('myCustomer', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      customerInfo: '=info'
+    },
+    templateUrl: 'my-customer-iso.html'
+  };
+});
+
+
+
+index.html
+------------
+<div ng-controller="Controller">
+  <my-customer info="naomi"></my-customer>
+  <hr>
+  <my-customer info="igor"></my-customer>
+</div>
+
+
+my-customer-iso.html
+-----------------------
+Name: {{customerInfo.name}} Address: {{customerInfo.address}}
+
+
+
+Its name (customerInfo) corresponds to the directive's isolate scope property, customerInfo.
+Its value (=info) tells $compile to bind to the info attribute (These =info attributes are normalized just like directive names.)
+
+Note: Normally, a scope prototypically inherits from its parent. An isolated scope does not
+
+only use transclude: true when you want to create a directive that wraps arbitrary content.
+
+LINK---------------
+
+Directives that want to modify the DOM typically use the link option to register DOM listeners as well as update the DOM. It is executed after the template has been cloned and is where directive logic will be put. Here in link, you can add required watchers and listners
+
+
+link takes a function with the following signature, function link(scope, element, attrs, controller, transcludeFn) { ... }, where:
+
+1. scope is an AngularJS scope object.
+2. element is the jqLite-wrapped element that this directive matches.
+3. attrs is a hash object with key-value pairs of normalized attribute names and their corresponding attribute values.
+4. controller is the directive's required controller instance(s) or its own controller (if any). The exact value depends on the directive's require property.
+5. transcludeFn is a transclude linking function pre-bound to the correct transclusion scope.
+
+-----------------------------$WATCH------------------$DIGEST---------------------$APPLY------------------------------------------------
+
+When you create a data binding from somewhere in your view to a variable on the $scope object, AngularJS creates a "watch" internally. A watch means that AngularJS watches changes in the variable on the $scope object. The framework is "watching" the variable. Watches are created using the $scope.$watch() function.
+
+Your application AngularJS calls the $scope.$digest() function. This function iterates through all watches and checks if any of the watched variables have changed. If a watched variable has changed, a corresponding listener function is called. The listener function does whatever work it needs to do, for instance changing an HTML text to reflect the new value of the watched variable. Thus, the $digest() function is what triggers the data binding to update.
+
+------------------------------------------------------------FORM SPECIAL EFFECTS-------------------------------------------------------------------------------
+
+Input fields have the following states:
+
+$untouched The field has not been touched yet
+$touched The field has been touched
+$pristine The field has not been modified yet
+$dirty The field has been modified
+$invalid The field content is not valid
+$valid The field content is valid
+They are all properties of the input field, and are either true or false.
+
+Forms have the following states:
+
+$pristine No fields have been modified yet
+$dirty One or more have been modified
+$invalid The form content is not valid
+$valid The form content is valid
+$submitted The form is submitted
+
+--------------------------------------------------------CHECK ARRAY, FUNCTION, 
+
+angular.isArray(value);
+angular.isDate(value);
+angular.isDefined(value);
+angular.isElement(value);
+angular.isFunction(value);
+angular.isNumber(value);
+angular.isObject(value);
+angular.isString(value);
+angular.isUndefined(value);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

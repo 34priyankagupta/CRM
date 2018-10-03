@@ -1,0 +1,821 @@
+ConcurrentModificationException occurs when we try to modify list/set during iteration process. This is what called ConcurrentModificationException
+
+1.  ArrayList is better than traditional array as it array size is  fixed but its dynamically increases as required. It implements List interface.
+	ArrayList is non-synchronized which means multiple threads can work on ArrayList at the same time.
+	ArrayList<String> obj = new ArrayList<String>();
+	obj.add("Ajeet")
+
+	
+2.  LinkedList implements list, Deque interfaces. it is more of a sequential list, we can add in first element or last element
+	LinkedList<String> linkedlist = new LinkedList<String>();
+	---Differences: 
+	ArrayList maintains index based system for its elements as it uses array data structure implicitly which makes it faster for searching an element in the list. On the other side LinkedList implements doubly linked list which requires the traversal through all the elements for searching an element.
+	1) As explained above the insert and remove operations give good performance (O(1)) in LinkedList compared to ArrayList(O(n)).
+	2) Search (get method) operations are fast in Arraylist (O(1)) but not in LinkedList (O(n)) so If there are less add and remove operations and more search operations requirement, ArrayList would be your best bet.
+	3) They both maintain the elements insertion order which means while displaying ArrayList and LinkedList elements the result set would be having the same 	order in which the elements got inserted into the List.
+	4) Both these classes are non-synchronized and can be made synchronized explicitly by using Collections.synchronizedList method.
+	
+3. 	Vector implements List Interface. Like ArrayList it also maintains insertion order but it is rarely used in non-thread environment as it is synchronized and
+	due to which it gives poor performance in searching, adding, delete and update of its elements.
+	Vector is synchronized. This means if one thread is working on Vector, no other thread can get a hold of it. Unlike ArrayList, only one thread can perform an operation on vector at a time. It creates an empty Vector with the default initial capacity of 10. It means the Vector will be re-sized when the 11th elements needs to be inserted into the Vector. Note: By default vector doubles its size. 
+	Vector vec= new Vector(4, 6)
+	
+4. HashMap (implements Map interface)is a Map based collection class that is used for storing Key & value pairs, it is denoted as HashMap<Key, Value> or
+	HashMap<K, V>. 
+	This class makes no guarantees as to the order of the map. It is similar to the Hashtable class except that it is unsynchronized and permits nulls(null
+	values and null key).It is not an ordered collection which means it does not return the keys and values in the same order in which they have been inserted into the HashMap. It does not sort the stored keys and Values
+	HashMap<Integer, String> hmap = new HashMap<Integer, String>();
+	hmap.put(12, "Chaitanya");
+	
+5. TreeMap class implements Map interface similar to HashMap class. The main difference between them is that HashMap is an unordered collection while TreeMap is
+	sorted in the ascending order of its keys. TreeMap is unsynchronized collection class which means it is not suitable for thread-safe operations. Does not allow null keys or null value.
+	TreeMap<Integer, String> tmap = new TreeMap<Integer, String>();
+	tmap.put(1, "Data1");
+	if you want to turn non-synchrous to synchronous, u need Map m = Collections.synchronizedMap(new LinkedHashMap(...));
+	
+6. LinkedHashMap is a Hash table and linked list implementation of the Map interface, with predictable iteration order. LinkedHashMap maintains the insertion
+	order. it allows null value and key
+	LinkedHashMap<Integer, String> lhmap = new LinkedHashMap<Integer, String>();
+	lhmap.put(22, "Abey");
+	
+7. HashSet Class implements the Set interface, backed by a hash table. This class permits the null element. This class is not synchronized. HashSet allows null
+	values. HashSet doesn’t allow duplicates. If you try to add a duplicate element in HashSet, the old value would be overwrittenHashSet doesn’t maintain any
+	order, the elements would be returned in any random order.
+	HashSet<String> hset = new HashSet<String>();
+	
+8. TreeSet is similar to HashSet except that it sorts the elements in the ascending order while HashSet doesn’t maintain any order. TreeSet allows null element
+	but like HashSet it doesn’t allow. 
+	TreeSet<String> tset = new TreeSet<String>();
+	tset.add("ABC");
+	
+9. LinkedHashSet maintains the insertion order. Elements gets sorted in the same sequence in which they have been added to the Set. LinkedHashSet is also an
+	implementation of Set interface
+	LinkedHashSet<String> lhset = new LinkedHashSet<String>();
+	lhset.add("Z");
+	
+10.  Hashtable This class implements a hash table, which maps keys to values. Any non-null object can be used as a key or as a value. Hashtable is similar to
+	HashMap except it is synchronized. So it is thread safe so if a thread works on this hashtable than another thread has to wait until its work is done.
+	Hashtable<String, String> hashtable = new Hashtable<String, String>();
+	hashtable.put("Key1","Chaitanya");
+	
+11.  QUEUE: A Queue is designed in such a way so that the elements added to it are placed at the end of Queue and removed from the beginning of Queue. 
+	FIFO (First In First Out). Queue interface in Java collections has two implementation: LinkedList and PriorityQueue, these two classes implements Queue
+	interface. Queue is an interface so we cannot instantiate it, rather we create instance of LinkedList or PriorityQueue.
+	Queue q1 = new LinkedList();
+	Queue q2 = new PriorityQueue();
+	q1.add("Rick");
+	
+12. Deque is a Queue in which you can add and remove elements from both sides. In the Java Queue tutorial we have seen that the Queue follows FIFO 
+	(First in First out) .Deque is an interface and has two implementations: LinkedList and ArrayDeque.
+	Deque dq = new LinkedList();
+	Deque dq = new ArrayDeque();
+	
+
+	List<E>:
+	An ordered collection (also known as a sequence). The user of this interface has precise control over where in the list each element is inserted.
+	The user can access elements by their integer index (position in the list), and search for elements in the list.
+	
+	Set<E>:
+	A collection that contains no duplicate elements. More formally, sets contain no pair of elements e1 and e2 such that e1.equals(e2), and at most one null
+	element. As implied by its name, this interface models the mathematical set abstraction.
+	
+13. Iterator is used for iterating (looping) various collection classes such as HashMap, ArrayList, LinkedList etc. 
+
+	ArrayList<String> names = new ArrayList<String>();
+    names.add("Chaitanya");
+    names.add("Steve");
+    names.add("Jack");
+ 
+    Iterator<String> it = names.iterator();
+ 
+    while(it.hasNext()) {
+      String obj = it.next();
+      System.out.println(obj);
+	  // while iterating if we try to modify: 
+	  // names.add("ting");  // ConcurrentModificationException
+    }
+	
+14. ConcurrentHashMap: HashMap is the Class which is under Traditional Collection and ConcurrentHashMap is a Class which is under Concurrent Collections.
+	ConcurrentHashMap is Thread-safe in nature. ConcurrentHashMap performance is low sometimes because sometimes Threads are required to wait on ConcurrentHashMap. In ConcurrentHashMap, we wont get any ConcurrentModificationException while performing any modification at the time of Iteration.
+	In ConcurrentHashMap null value is not allowed for key and value, otherwise we will get Run-time exception saying NullPointerException.
+	
+---------------------------------------------------SERIALIZATION-------------------------------------------------------------------------
+
+Serialization is a mechanism to convert an object into stream of bytes so that it can be written into a file, transported through a network or stored into database. De-serialization is just a vice versa
+
+----------------------------------------------------STATIC-------------------------------------------------------------------------------
+
+Static method in base class which will be hidden in subclass, and Non-static method which will be overridden in derived class.
+Static methods can not override.
+
+---------------------------------------------------ERROR N EXCEPTION----------------------------------------------------------------------
+
+Error
+----------
+AnnotationFormatError - Thrown when the annotation parser attempts to read an annotation from a class file and determines that the annotation is malformed.
+AssertionError - Thrown to indicate that an assertion has failed.
+LinkageError - Subclasses of LinkageError indicate that a class has some dependency on another class; however, the latter class has incompatibly changed after the compilation of the former class.
+VirtualMachineError - Thrown to indicate that the Java Virtual Machine is broken or has run out of resources necessary for it to continue operating.
+OutOfMemoryError 
+
+Unchecked 
+----------
+ArrayIndexOutOfBoundsException	
+ClassCastException 
+IllegalArgumentException 
+IllegalStateException 
+NullPointerException 
+NumberFormatException 
+AssertionError 
+ExceptionInInitializerError 
+StackOverflowError 
+NoClassDefFoundError 
+
+
+Checked 
+----------
+Exception 
+IOException 
+FileNotFoundException 
+ParseException 
+ClassNotFoundException 
+CloneNotSupportedException 
+InstantiationException 
+InterruptedException	
+NoSuchMethodException	
+NoSuchFieldException	
+
+-------------------------------------------------JRE----------JDK-----------JVM----------------------------------------------------------------------
+
+JRE (Java Runtime) is needed for running Java programs. JDK (Java Development Kit), which includes JRE plus the development tools (such as compiler and debugger), is need for writing (developing) as well as running Java programs. In other words, JRE is a subset of JDK. Since you are supposed to write Java Programs, you should install JDK, which includes JRE. Basically JRE is the container, JVM is the content.
+JRE = JVM + Java Packages Classes (like util, math, lang, awt, swing etc) + runtime libraries.
+
+JDK: JDK is a superset of JRE, it contains everything that JRE has along with development tools such as compiler, debugger etc.
+Javac compiler translates JAVA-high level programming language into machine language (.class which is actually in byte)
+Java Virtual Machine (JVM) is a virtual machine that resides in the real machine (your computer) and JVM runs byte code.
+JVM executes the byte code generated by compiler and produce output. JVM is the one that makes java platform independent.
+The primary function of JVM is to execute the byte code produced by compiler.
+Which means that the byte code generated on Windows can be run on Mac OS and vice versa. That is why we call java as platform independent language.
+The Java Virtual machine (JVM) is the virtual machine that runs on actual machine (your computer) and executes Java byte code. The JVM doesn’t understand
+Java source code, that’s why we need to have javac compiler that compiles *.java files to obtain *.class files that contain the byte codes understood by
+the JVM. JVM makes java portable (write once, run anywhere). Each operating system has different JVM, however the output they produce after execution of
+byte code is same across all operating systems.
+
+JIT (Just In Time) is part of JVM and used to improve JVM performance by dynamically compiling or translating Java byte codes into native machine language code during execution time.
+
+JRE: JRE is the environment within which the java virtual machine runs. JRE contains Java virtual Machine(JVM), class libraries, and other files excluding development tools such as compiler and debugger.
+Which means you can run the code in JRE but you can’t develop and compile the code in JRE.
+
+JDK: JDK is a superset of JRE, it contains everything that JRE has along with development tools such as compiler, debugger etc.
+
+
+Why?????? public static void main(String[] args)  {
+	
+public: This makes the main method public that means that we can call the method from outside the class.
+
+static: We do not need to create object for static methods to run. They can run itself.
+
+void: It does not return anything.
+
+main: It is the method name. This is the entry point method from which the JVM can run your program.
+
+(String[] args): Used for command line arguments that are passed as strings. We will cover that in a separate post.
+	
+	
+	
+----------------------------------------------SEARCH ALGORITHM--------------------------------------------------------
+	
+	LINEAR SEARCH :  sequential search made one by one checking all the items
+	
+	But if element is present in the end most of the location then linear search is not so good, use binary search then
+	
+	BINARY SEARCH : 
+		a. fast search algorithm with time complexity and 0(logN)
+		b. based on divide and conquer
+		c. data item should be sorted  (this is the limitation of binary search that data list should be sorted already)
+		
+		while low <= high
+		do mid (low+ high)/2
+		if v= A[mid]
+		return mid
+		if v>A [mid]
+		low = mid+1
+		else
+		high = mid - 1
+		return NIL
+		
+----------------------------------------------SORT ALGORITHM--------------------------------------------------------
+
+	QUICK SORT: 
+		a. based on positioning of array of data into smaller arrays
+		b. uses concept of divide and rule
+		c. finds an element called 'pivot'  (left pivot, right pivot)
+		d. efficient for large data
+		e. average and worst case complexity 0(n logN)
+		f. recursive steps:
+			1. find pivot that divides the array in 2 halves
+			2. quick sort left half
+			3. quick sort right half
+
+
+--------------------WRAPPER, AUTOBOXING-------------------------------------
+
+Java is statically typed and also a strongly typed language where each variable and expression type is already known at compile time.
+Generally we use primitive types but sometime we need to use object, and to do this JAVA provides wrapper class to us.
+
+Java has two categories of data:
+--------------------------------
+Primitive data (e.g., number, character)  (total 8 primitive type is there- int, long, short, byte,char,float, double, boolean)
+Object data (programmer created types)
+
+Autoboxing: Automatic conversion of primitive types to the object of their corresponding wrapper classes is known as autoboxing. For example – conversion of int to Integer, long to Long, double to Double etc.
+
+Unboxing: It is just the reverse process of autoboxing. Automatically converting an object of a wrapper class to its corresponding primitive type is known as unboxing. For example – conversion of Integer to int, Long to long, Double to double etc.
+
+Integer x = 5; // boxes int to an Integer object (taken care by the compiler)
+x =  x + 10;   // unboxes the Integer to a (x is unboxed so that they can be added as an int)
+System.out.println(x); 
+	
+	
+	Primitive Data types and their Corresponding Wrapper class:::::::::
+	-----------------------------------------------------------
+	char - Character
+	byte - Byte
+	short - Short
+	long - Long
+	float - Float
+	double - Double
+	boolean - Boolean
+	int - Integer
+	
+	
+	Need of Wrapper Classes:::::
+	------------------------
+	
+1.	They convert primitive data types into objects. Objects are needed if we wish to modify the arguments passed into a method (because primitive types are passed by value).
+
+2.	The classes in java.util package handles only objects and hence wrapper classes help in this case also.
+
+3.	Data structures in the Collection framework, such as ArrayList and Vector, store only objects (reference types) and not primitive types.
+
+4.	An object is needed to support synchronization in multithreading.
+	
+	
+-------------------------------------------------------------THREAD IN JAVA-------------------------------------------------------------------
+	
+	Java provides built-in support for multithreaded programming. When a Java program starts up, one thread begins running immediately. This is usually called the main thread of our program, because it is the one that is executed when our program begins.
+	
+	For each program, a Main thread is created by JVM(Java Virtual Machine). The “Main” thread first verifies the existence of the main() method, and then it initializes the class. Note that from JDK 6, main() method is mandatory in a standalone java application. A thread, in the context of Java, is the path followed when executing a program. All Java programs have at least one thread, known as the main thread, which is created by the Java Virtual Machine (JVM) at the program’s start, when the main() method is invoked with the main thread.
+	
+	New – When we create an instance of Thread class, a thread is in a new state.
+	Running – The Java thread is in running state.
+	Suspended – A running thread can be suspended, which temporarily suspends its activity. A suspended thread can then be resumed, allowing it to pick up where it left off.
+	Blocked – A java thread can be blocked when waiting for a resource.
+	Terminated – A thread can be terminated, which halts its execution immediately at any given time. Once a thread is terminated, it cannot be resumed. 
+	
+	The main thread is created automatically when our program is started. To control it we must obtain a reference to it. This can be done by calling the method currentThread( ) which is present in Thread class. This method returns a reference to the thread on which it is called. The default priority of Main thread is 5 and for all remaining user threads priority will be inherited from parent to child.
+	
+	create a new thread, your program will either extend Thread or implement the Runnable interface.
+
+	The Thread class defines several methods that help manage threads.The table below displays the same:
+
+	1.	Method - 	Meaning
+	2.	getName -	Obtain thread’s name
+	3.	getPriority -	Obtain thread’s priority
+	4.	isAlive -	Determine if a thread is still running
+	5.	join -	Wait for a thread to terminate
+	6.	run -	Entry point for the thread
+	7.	sleep -	Suspend a thread for a period of time
+	8.	start -	Start a thread by calling its run method
+	
+	What is the major difference between implementing Runnable or extend thread? we can extend only one class in java...if we extend thread then we can not extend another class whereas we can implement multiple interfaces
+	
+	implementing runnable
+	----------------------
+	public class MyClass implements Runnable {
+	public void run(){
+	System.out.println("MyClass running");
+	   } 
+	}
+
+	Thread t1 = new Thread(new MyClass ());
+	t1.start();
+	
+	
+	Extending Java Thread
+	----------------------
+	public class MyClass extends Thread {
+		 public void run(){
+		 System.out.println("MyClass running");
+	   }
+	}
+	
+	MyClass t1 = new MyClass ();
+	T1.start();
+	
+	
+-------------------------------------------------------------STRING-----------------------------------------------------------------------------------
+	
+There are two ways to create a String object:
+	
+1.	By string literal : Java String literal is created by using double quotes. Object creates in common string pool. if value already exists then it returns
+	the same reference.
+	For Example: String s=“Welcome”;  
+	
+2.	By new keyword : Java String is created by using a keyword “new”. Object creates in heap
+	For example: String s=new String(“Welcome”);  
+	It creates two objects (in String pool and in heap) and one reference variable where the variable ‘s’ will refer to the object in the heap.	
+	
+	
+	Java String is immutable and final, so a new String is created whenever we do String manipulation. So for, String manipulations are resource consuming, Java provides two utility classes: StringBuffer and StringBuilder.
+	
+	Differences in StringBuffer and StringBuilder.
+	------------------------------------------------
+	StringBuffer and StringBuilder are mutable classes. StringBuffer operations are thread-safe and synchronized whereas StringBuilder operations are not thread-safe.
+	StringBuffer is to be used when multiple threads are working on same String and StringBuilder in the single threaded environment.
+	StringBuilder performance is faster when compared to StringBuffer because of no overhead of synchronized.
+	
+	
+	
+	
+	
+	
+	
+	
+----------------------------------------TESTING------------------------------------------------------------------
+
+A Functional Test makes sure the application allows the user to perform an action. A Unit Test makes sure the code behaves how the programmer expects.
+"Functional test" is rather end-to-end test.
+	
+	
+	
+-------------------------SPRING------------------------------------------------
+The objects that form the backbone of your application and that are managed by the Spring IoC container are called beans.
+
+@Qualifier :  The qualifier annotation helps disambiguate bean references when Spring would otherwise not be able to do so
+
+For a bean with the default singleton scope, Spring first checks if a cached instance of the bean already exists and only creates a new one if it doesn’t. If we’re using the prototype scope, the container returns a new bean instance for each method call.
+
+SO if you are using same bean id for same id, it will throw error
+
+<bean id="appContext1" class="com.context.AppContext">
+     <constructor-arg value="abc" />
+<bean/>
+<bean id="appContext2" class="com.context.AppContext">
+     <constructor-arg value="ABC" />
+<bean/>
+
+@Autowired
+@Qualifier("appContext1")
+AppContext appContext;
+
+@Autowired
+@Qualifier("appContext2")
+AppContext appContext;
+
+
+------
+
+@Component: It is a basic auto component scan annotation, it indicates annotated class is a auto scan component.
+
+@Repository: You need to use this annotation with in the persistance layer, which acts like database repository.
+
+@Service: It indicates annotated class is a Service component in the business layer.
+
+@Controller: Annotated class indicates that it is a controller components, and mainly used at presentation layer.
+
+-----------
+
+BeanFactory / ApplicationContext
+----------------------------------
+
+BeanFactory and ApplicationContext both are Java interfaces and ApplicationContext extends BeanFactory
+
+BeanFactory is also called basic IOC and ApplicationContext is called Advanced IOC. Although BeanFactory and ApplicationContext both are used to get the beans from IOC container by using method getBean(String beanName). But they have some significant differences in their implementation which are described as below :
+
+1. BeanFactory uses lazy initialization approach whereas ApplicationContext uses eager initialization approach.
+
+2. BeanFactory creates a singleton bean only when it is requested from it but ApplicationContext creates all singleton beans at the time of its own initialization.
+
+3. Annotation based dependency Injection is not supported by BeanFactory whereas ApplicationContext supports using annotation @PreDestroy, @Autowired. 
+	ApplicationContext: Support internationalization while beanfactory don't.
+	
+	
+-----------------------------------------------------------------HIBERNATE-------------------------------------------------------------------------
+
+----------------------------------------------------------------NAMED QUERY------------------------------------------------------------------
+
+Hibernate Named Query is global, means once defined it can be used throughout the application.
+
+
+Hibernate Configuration XML
+hibernate.cfg.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE hibernate-configuration SYSTEM "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.password">pankaj123</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/TestDB</property>
+		<property name="hibernate.connection.username">pankaj</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.show_sql">true</property>
+
+		<mapping class="com.journaldev.hibernate.model.Employee" />
+		<mapping class="com.journaldev.hibernate.model.Address" />
+		<mapping resource="named-queries.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>
+
+
+Hibernate Named Query XML
+We have a hibernate mapping file, that contains only HQL named queries and Native SQL named queries.
+-------------------------------
+named-queries.hbm.xml
+
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping>
+	<query name="HQL_GET_ALL_EMPLOYEE">from Employee</query>
+
+	<query name="HQL_GET_EMPLOYEE_BY_ID">
+		<![CDATA[from Employee where emp_id = :id]]>
+	</query>
+
+	<query name="HQL_GET_EMPLOYEE_BY_SALARY">
+		<![CDATA[from Employee where emp_salary > :salary]]>
+	</query>
+	
+	<sql-query name="SQL_GET_ALL_EMPLOYEE">
+		<![CDATA[select emp_id, emp_name, emp_salary from Employee]]>
+	</sql-query>
+	
+	<sql-query name="SQL_GET_ALL_EMP_ADDRESS">
+		<![CDATA[select {e.*}, {a.*} from Employee e join Address a ON e.emp_id=a.emp_id]]>
+		<return alias="e" class="com.journaldev.hibernate.model.Employee" />
+		<return-join alias="a" property="e.address"></return-join>
+	</sql-query>
+	
+	<return alias="e" class="com.journaldev.hibernate.model.Employee" />
+		<return-join alias="a" property="e.address"></return-join>
+	</sql-query>
+</hibernate-mapping>
+
+-------------------------
+	public static void main(String[] args) {
+
+		// Prep work
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+
+		//HQL Named Query Example
+		Query query = session.getNamedQuery("HQL_GET_ALL_EMPLOYEE");
+		List<Employee> empList = query.list();
+		for (Employee emp : empList) {
+			System.out.println("List of Employees::" + emp.getId() + ","
+					+ emp.getAddress().getCity());
+		}
+		tx.commit();
+
+		// closing hibernate resources
+		sessionFactory.close();
+		
+		}
+------------------------
+
+@Entity
+@Table(name = "ADDRESS")
+@NamedQueries({ @NamedQuery(name = "@HQL_GET_ALL_ADDRESS", 
+			query = "from Address") })
+@NamedNativeQueries({ @NamedNativeQuery(name = "@SQL_GET_ALL_ADDRESS", 
+			query = "select emp_id, address_line1, city, zipcode from Address") })
+public class Address {............}
+
+
+
+various objects - transient, persistent, detached, remove---
+-----------------------------------------------------------
+
+1.	Newly created POJO object will be in the transient state. Transient object doesn’t represent any row of the database i.e. not associated with any session
+	object. It’s plain simple java object.
+	
+2.	Persistent object represent one row of the database and always associated with some unique hibernate session. Changes to persistent objects are tracked by
+	hibernate and are saved into database when commit call happen.
+	
+3.	Detached objects are those who were once persistent in past, and now they are no longer persistent. To persist changes done in detached objects, you must
+	reattach them to hibernate session.
+	
+4.	Removed objects are persistent objects that have been passed to the session’s remove() method and soon will be deleted as soon as changes held in the
+	session will be committed to database.
+
+
+Caching in hibernate
+---------------------
+	Caching functionality is designed to reduce the amount of necessary database access.
+	Hibernate provides 3 types of caching. 
+	1. Session Cache : The session cache caches objects within the current session. It is enabled by default in Hibernate. When we query an entity first time, it is retrieved from database and stored in first level cache associated with hibernate session
+	2. Second Level Cache : 
+	
+
+	
+FROM Clause
+------------
+String hql = "FROM Employee";
+Query query = session.createQuery(hql);
+List results = query.list();
+	
+
+AS Clause
+------------
+String hql = "FROM Employee AS E";
+Query query = session.createQuery(hql);
+List results = query.list();
+	
+	
+SELECT Clause
+--------------
+String hql = "SELECT E.firstName FROM Employee E";
+Query query = session.createQuery(hql);
+List results = query.list();	
+	
+	
+WHERE Clause
+---------------
+String hql = "FROM Employee E WHERE E.id = 10";
+Query query = session.createQuery(hql);
+List results = query.list();
+	
+ORDER BY Clause
+----------------
+String hql = "FROM Employee E WHERE E.id > 10 ORDER BY E.salary DESC";
+Query query = session.createQuery(hql);
+List results = query.list();
+	
+
+GROUP BY Clause
+---------------
+String hql = "SELECT SUM(E.salary), E.firtName FROM Employee E " +
+             "GROUP BY E.firstName";
+Query query = session.createQuery(hql);
+List results = query.list();
+	
+	
+Using Named Parameters
+----------------------
+String hql = "FROM Employee E WHERE E.id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("employee_id",10);
+List results = query.list();
+	
+	
+UPDATE Clause
+--------------
+String hql = "UPDATE Employee set salary = :salary "  + "WHERE id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("salary", 1000);
+query.setParameter("employee_id", 10);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result);
+	
+	
+	
+DELETE Clause
+--------------
+String hql = "DELETE FROM Employee "  + "WHERE id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("employee_id", 10);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result);
+	
+	
+INSERT Clause
+----------------
+String hql = "INSERT INTO Employee(firstName, lastName, salary)"  + "SELECT firstName, lastName, salary FROM old_employee";
+Query query = session.createQuery(hql);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result);
+
+DISTINCT
+----------
+The distinct keyword only counts the unique values in the row set.
+
+String hql = "SELECT count(distinct E.firstName) FROM Employee E";
+Query query = session.createQuery(hql);
+List results = query.list();
+
+----------------
+
+Hibernate one to one mapping with foreign key association
+---------------------------------------------------------
+
+Below is EmployeeEntity.java
+
+@OneToOne
+@JoinColumn(name="ACCOUNT_ID")
+private AccountEntity account;
+
+
+In this kind of association, a foreign key column is created in owner entity. For example, if we make EmployeeEntity owner, then a extra column "ACCOUNT_ID" will be created in Employee table. This column will store the foreign key for Account table.
+
+
+If no @JoinColumn is declared on the owner side, the defaults apply. A join column(s) will be created in the owner table and its name will be the concatenation of the name of the relationship in the owner side, _ (underscore), and the name of the primary key column(s) in the owned side.
+	
+	
+Below is AccountEntity.java
+
+@OneToOne(mappedBy="account")
+private EmployeeEntity employee;
+	
+	
+------------------------------------------------------------- AUTOCLOSEABLE--------------------------------------------------------------------------
+this particular interface helps to autoclose 
+
+public class Java7ResourceManagement {
+
+	public static void main(String[] args) {
+
+		try (MyResource mr = new MyResource()) {
+			System.out.println("MyResource created in try-with-resources");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Out of try-catch block.");
+	}
+
+	static class MyResource implements AutoCloseable{
+
+		@Override
+		public void close() throws Exception {
+			System.out.println("Closing MyResource");
+		}
+
+	}
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
