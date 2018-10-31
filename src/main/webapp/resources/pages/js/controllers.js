@@ -202,11 +202,7 @@
 				}).catch((function (e) {
 					console.log(e);
 					Notification.error({
-<<<<<<< HEAD
 						message: e.data.message + `<br>Please try again!`
-=======
-						message: e.data.message+`\nPlease try again!`
->>>>>>> d617d5688d8b03e5282b543d2674aa9e6c8228eb
 					});
 					$scope.disableAddCustomer = false;
 				}))
